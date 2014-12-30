@@ -18,6 +18,18 @@ Vagrant will provision the machine (using ansible).
 
 The box is then available at `192.168.42.100`, the vhost is configured with domain `broadway.local`.
 
+## Running the demo
+
+This demo doesn't have a GUI, only an API with the following endpoints:
+
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/basket` | Pickup a new basket, returns the basketId |
+| POST | `/basket/{basketId}/addProduct` | Add a product to a basket (productId and productName should be given as form fields) |
+| POST | `/basket/{basketId}/removeProduct` | Remove a product from a basket (productId as form field) |
+| POST | `/basket/{basketId}/checkout` | Checkout a basket |
+| GET | `/advice/{productId}` | Retrieve _Other people also bought this_ list |
+
 ## Running the tests
 
 Login to your vagrant box to run the tests. By default we exclude functional tests, by providing `--exclude-group=none` you can run the functional tests as well.
