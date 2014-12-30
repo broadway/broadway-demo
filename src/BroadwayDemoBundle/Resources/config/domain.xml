@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="broadway_demo.basket.command_handler" class="BroadwayDemo\Basket\BasketCommandHandler">
+            <argument type="service" id="broadway_demo.basket.repository" />
+            <tag name="command_handler"/>
+        </service>
+
+        <service id="broadway_demo.basket.repository" class="BroadwayDemo\Basket\BasketRepository">
+            <argument type="service" id="broadway.event_store" />
+            <argument type="service" id="broadway.event_handling.event_bus" />
+            <argument type="collection">
+                <argument type="service" id="broadway.metadata_enriching_event_stream_decorator" />
+            </argument>
+        </service>
+
+        <service id="broadway_demo.read_model.repository.people_that_bought_this_product" factory-method="create" factory-service="broadway.read_model.repository_factory" class="Broadway\ReadModel\ReadModel">
+            <argument>broadway_demo.people_that_bought_this_product</argument>
+            <argument>BroadwayDemo\ReadModel\PeopleThatBoughtThisProductAlsoBought</argument>
+        </service>
+
+        <service id="broadway_demo.read_model.projector.people_that_bought_this_product" class="BroadwayDemo\ReadModel\PeopleThatBoughtThisProductAlsoBoughtProjector">
+            <tag name="broadway.domain.event_listener" />
+            <argument type="service" id="broadway_demo.read_model.repository.people_that_bought_this_product" />
+        </service>
+
+    </services>
+
+</container>

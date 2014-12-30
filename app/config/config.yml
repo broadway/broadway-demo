@@ -1,0 +1,19 @@
+framework:
+    secret: "HiThere"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver: pdo_sqlite
+                path: "%kernel.cache_dir%.events.sqlite"
+
+broadway:
+    read_model:
+        repository: elasticsearch
+
+parameters:
+    storage_suffix: "_%kernel.environment%"

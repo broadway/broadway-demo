@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="broadway_demo.controller.basket" class="BroadwayDemoBundle\Controller\BasketController">
+            <argument type="service" id="broadway.command_handling.command_bus" />
+            <argument type="service" id="broadway.uuid.generator" />
+        </service>
+
+        <service id="broadway_demo.controller.people_that_bought_this_product" class="BroadwayDemoBundle\Controller\PeopleThatBoughtThisProductAlsoBoughtController">
+            <argument type="service" id="broadway_demo.read_model.repository.people_that_bought_this_product" />
+        </service>
+
+        <service id="broadway.stack.request_id.monolog_processor" class="Qandidate\Stack\RequestId\MonologProcessor">
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="255" />
+            <tag name="monolog.processor" />
+        </service>
+
+    </services>
+</container>

@@ -1,0 +1,60 @@
+---
+- name: Broadway demo provisioning
+  hosts: default
+  handlers:
+    - name: restart web
+      with_items: [nginx, php5-fpm]
+      service: name={{ item }} state=restarted
+
+  tasks:
+    - name: Update apt-get
+      apt: update_cache=yes
+
+    - name: add Public Signing Key
+      shell: wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
+
+    - name: add apt repository
+      apt_repository: repo="deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main" state=present update_cache=yes
+
+    - name: Install packages
+      apt: package={{item}} state=present
+      with_items:
+          - curl
+          - git
+          - php5-fpm
+          - php5-cli
+          - php5-curl
+          - php5-mongo
+          - php5-sqlite
+          - openjdk-7-jre
+          - elasticsearch
+          - mongodb-server
+          - nginx
+
+    - name: Install composer
+      get_url: url=https://getcomposer.org/composer.phar dest=/usr/local/bin/composer mode=755 owner=vagrant group=vagrant
+
+    - name: Install phpunit
+      get_url: url=https://phar.phpunit.de/phpunit.phar dest=/usr/local/bin/phpunit mode=755 owner=vagrant group=vagrant
+
+    - name: Enable ElasticSearch service
+      service: name=elasticsearch state=started enabled=yes
+
+    - name: Install vhost
+      template: src=templates/nginx.conf dest=/etc/nginx/sites-available/default
+      notify: restart web
+
+    - name: Run php-fpm as vagrant
+      lineinfile: dest=/etc/php5/fpm/pool.d/www.conf line='user = vagrant'
+      notify: restart web
+
+    - name: Run required services
+      service: name={{ item }} state=started
+      with_items:
+          - nginx
+          - php5-fpm
+          - mongodb
+      tags: services
+
+    - name: Create database
+      shell: /vagrant/app/console broadway:event-store:schema:init || true

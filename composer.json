@@ -1,0 +1,42 @@
+{
+    "name": "broadway/broadway-demo",
+    "description": "broadway",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fritsjan",
+            "email": "fritsjan@qandidate.com"
+        },
+        {
+            "name": "Willem-Jan",
+            "email": "wjzijderveld@gmail.com"
+        },
+        {
+            "name": "Qandidate.com",
+            "homepage": "http://labs.qandidate.com"
+        }
+    ],
+    "require": {
+        "broadway/broadway": "~0.4.0@dev",
+        "qandidate/stack-request-id": "~0.1.0",
+        "doctrine/doctrine-bundle": "1.2.*",
+        "symfony/browser-kit": "~2.3",
+        "symfony/console": "~2.3",
+        "symfony/class-loader": "~2.3",
+        "symfony/framework-bundle": "~2.3",
+        "symfony/yaml": "~2.3",
+        "elasticsearch/elasticsearch": "~1.0",
+        "doctrine/mongodb": "~1.1",
+        "symfony/finder": "~2.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "instaclick/base-test-bundle": "~0.5"
+    }
+}

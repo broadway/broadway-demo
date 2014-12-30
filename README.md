@@ -1,0 +1,45 @@
+# Demo for Broadway - EventSourcing library for PHP
+
+This repository contains a demo application to show how [Broadway] can be used within a Symfony application.
+The example is taken from the [Practical Event Sourcing][practical-eventsourcing] talk from [Mathias Verraes].
+
+[Broadway]: https://github.com/qandidate-labs/broadway
+[practical-eventsourcing]: http://verraes.net/2014/03/practical-event-sourcing/
+[Mathias Verraes]: https://twitter.com/mathiasverraes
+
+## Installation
+
+```sh
+composer install
+vagrant up
+```
+
+Vagrant will provision the machine (using ansible).
+
+The box is then available at `192.168.42.100`, the vhost is configured with domain `broadway.local`.
+
+## Running the tests
+
+Login to your vagrant box to run the tests. By default we exclude functional tests, by providing `--exclude-group=none` you can run the functional tests as well.
+
+```sh
+cd /vagrant
+phpunit --exclude-group=none
+```
+
+## Code structure
+
+- Domain code can be found in `src/BroadwayDemo/Basket`
+- ReadModel code can be found in `src/BroadwayDemo/ReadModel`
+- Controller / services can be found in `src/BroadwayDemoBundle`
+
+Note that there are two files for the services: `services.xml` and `domain.xml`.
+`domain.xml` contains all the domain-specific services (CommandHandler,
+ReadModels, Repositories), while `services.xml` contains domain-unspecific
+services (controllers etc).
+
+The domain specific tests can be found in `test/BroadwayDemo/Basket` and `test/BroadwayDemo/ReadModel`
+
+Note that there is a functional test (using ElasticSearch) in `test/BroadwayDemoBundle/Functional`
+
+For more information, read our blogpost about this demo: http://labs.qandidate.com/blog/2014/12/30/a-broadway-demo-application/
