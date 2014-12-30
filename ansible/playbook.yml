@@ -56,5 +56,8 @@
           - mongodb
       tags: services
 
+    - name: Run composer install
+      shell: chdir=/vagrant composer install --no-interaction
+
     - name: Create database
       shell: /vagrant/app/console broadway:event-store:schema:init || true
