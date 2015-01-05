@@ -48,6 +48,10 @@
       lineinfile: dest=/etc/php5/fpm/pool.d/www.conf line='user = vagrant'
       notify: restart web
 
+    - name: Enable display_errors
+      lineinfile: dest=/etc/php5/fpm/php.ini regexp='^display_errors = ' line='display_errors = On'
+      notify: restart web
+
     - name: Run required services
       service: name={{ item }} state=started
       with_items:
