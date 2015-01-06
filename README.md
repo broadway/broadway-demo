@@ -17,7 +17,7 @@ Vagrant will provision the machine (using ansible).
 
 The box is then available at `192.168.42.100`, the vhost is configured with domain `broadway.local`.
 
-If you don't have ansible installed, you will have to run `composer install` yourself. And run `app/console broadway:event-store:schema:init` to initialize the databse.
+If you don't have ansible installed, you will have to run `composer install` yourself. And run `app/console broadway:event-store:schema:init` to initialize the database.
 
 ## Running the demo
 
@@ -55,4 +55,4 @@ The domain specific tests can be found in `test/BroadwayDemo/Basket` and `test/B
 
 Note that there is a functional test (using ElasticSearch) in `test/BroadwayDemoBundle/Functional`
 
-For more information, read our blogpost about this demo: http://labs.qandidate.com/blog/2014/12/30/a-broadway-demo-application/
+For more information, read our blog post about this demo: http://labs.qandidate.com/blog/2014/12/30/a-broadway-demo-application/

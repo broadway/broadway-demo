@@ -11,7 +11,6 @@
 
 namespace BroadwayDemoBundle;
 
-use Doctrine\DBAL\Schema\Schema;
 use IC\Bundle\Base\TestBundle\Test\WebTestCase as BaseWebTestCase;
 
 class WebTestCase extends BaseWebTestCase

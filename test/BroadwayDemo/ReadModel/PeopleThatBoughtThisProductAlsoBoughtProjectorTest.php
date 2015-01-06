@@ -69,8 +69,7 @@ class PeopleThatBoughtThisProductAlsoBoughtProjectorTest extends ProjectorScenar
     {
         $readModel = new PeopleThatBoughtThisProductAlsoBought($productId);
 
-        foreach ($products as $productId => $count)
-        {
+        foreach ($products as $productId => $count) {
             $readModel->addProduct($productId, $count);
         }
 
