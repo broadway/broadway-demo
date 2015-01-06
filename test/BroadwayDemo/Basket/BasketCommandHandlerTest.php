@@ -14,7 +14,6 @@ namespace BroadwayDemo\Basket;
 use Broadway\CommandHandling\Testing\CommandHandlerScenarioTestCase;
 use Broadway\EventHandling\EventBusInterface;
 use Broadway\EventStore\EventStoreInterface;
-use Broadway\ReadModel\InMemory\InMemoryRepository;
 
 abstract class BasketCommandHandlerTest extends CommandHandlerScenarioTestCase
 {

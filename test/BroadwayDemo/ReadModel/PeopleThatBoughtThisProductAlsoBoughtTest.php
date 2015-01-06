@@ -11,8 +11,6 @@
 
 namespace BroadwayDemo\ReadModel;
 
-use BroadwayDemo\Basket\BasketCheckedOut;
-use Broadway\ReadModel\InMemory\InMemoryRepository;
 use Broadway\ReadModel\Testing\ReadModelTestCase;
 
 class PeopleThatBoughtThisProductAlsoBoughtTest extends ReadModelTestCase
