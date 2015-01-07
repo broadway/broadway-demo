@@ -112,32 +112,33 @@ class WebTestCase extends BaseWebTestCase
         return $this->getContainer()->get('broadway.event_store.dbal');
     }
 
+    /**
+     * @param string $url
+     * @param array $body
+     * @return mixed
+     */
     protected function post($url, array $body)
     {
-        $this->getClient()->request(
-            'POST',
-            $url,
-            $body
-        );
-
-        $response = $this->getClient()->getResponse(); // client->request returns a DomCrawler, which doesnt work for json
+        $response = $this->getResponse($url, 'POST', $body);
 
         return json_decode($response->getContent(), true);
     }
 
+    /**
+     * @param string $url
+     * @param array $body
+     * @return mixed
+     */
     protected function put($url, array $body)
     {
-        $this->getClient()->request(
-            'PUT',
-            $url,
-            $body
-        );
-
-        $response = $this->getClient()->getResponse(); // client->request returns a DomCrawler, which doesnt work for json
+        $response = $this->getResponse($url, 'PUT', $body);
 
         return json_decode($response->getContent(), true);
     }
 
+    /**
+     * @param string $url
+     */
     protected function delete($url)
     {
         $this->getClient()->request(
@@ -146,30 +147,33 @@ class WebTestCase extends BaseWebTestCase
         );
     }
 
+    /**
+     * @param string $url
+     * @return mixed
+     */
     protected function get($url)
     {
-        $this->getClient()->request(
-            'GET',
-            $url
-        );
-
-        $response = $this->getClient()->getResponse(); // client->request returns a DomCrawler, which doesnt work for json
+        $response = $this->getResponse($url);
 
         return json_decode($response->getContent(), true);
     }
 
     /**
      * @param string $url
+     * @param string method
+     * @param array body the body to be sent during the request
      *
      * @return Response
      */
-    protected function getResponse($url)
+    protected function getResponse($url, $method = 'GET', array $body = array())
     {
         $this->getClient()->request(
-            'GET',
-            $url
+            $method,
+            $url,
+            $body
         );
 
+        // client->request returns a DomCrawler, which doesnt work for json
         return $this->getClient()->getResponse();
     }
 }
