@@ -12,7 +12,6 @@
 namespace BroadwayDemo\Basket;
 
 use Broadway\CommandHandling\CommandHandler;
-use Broadway\ReadModel\Repository as ReadModelRepository;
 
 class BasketCommandHandler extends CommandHandler
 {
