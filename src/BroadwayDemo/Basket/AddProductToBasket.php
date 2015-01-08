@@ -13,6 +13,9 @@ namespace BroadwayDemo\Basket;
 
 class AddProductToBasket extends BasketCommand
 {
+    private $productId;
+    private $productName;
+
     /**
      * @param string $productId
      * @param string $productName
