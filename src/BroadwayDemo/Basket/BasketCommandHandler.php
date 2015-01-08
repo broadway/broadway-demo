@@ -22,14 +22,14 @@ class BasketCommandHandler extends CommandHandler
         $this->repository = $repository;
     }
 
-    protected function handlePickUpBasket(PickUpBasket $command)
+    public function handlePickUpBasket(PickUpBasket $command)
     {
         $basket = Basket::pickUpBasket($command->getBasketId());
 
         $this->repository->add($basket);
     }
 
-    protected function handleAddProductToBasket(AddProductToBasket $command)
+    public function handleAddProductToBasket(AddProductToBasket $command)
     {
         $basket = $this->repository->load($command->getBasketId());
         $basket->addProduct($command->getProductId(), $command->getProductName());
