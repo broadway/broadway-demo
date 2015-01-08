@@ -45,7 +45,7 @@ class BasketCommandHandler extends CommandHandler
         $this->repository->add($basket);
     }
 
-    public function handleCheckout(Checkout $command)
+    public function handleCheckoutBasket(CheckoutBasket $command)
     {
         $basket = $this->repository->load($command->getBasketId());
         $basket->checkout();

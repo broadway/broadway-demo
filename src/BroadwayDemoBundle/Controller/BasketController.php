@@ -16,7 +16,7 @@ use Broadway\CommandHandling\CommandBusInterface;
 use Broadway\UuidGenerator\UuidGeneratorInterface;
 use BroadwayDemo\Basket\AddProductToBasket;
 use BroadwayDemo\Basket\BasketId;
-use BroadwayDemo\Basket\Checkout;
+use BroadwayDemo\Basket\CheckoutBasket;
 use BroadwayDemo\Basket\PickUpBasket;
 use BroadwayDemo\Basket\RemoveProductFromBasket;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -98,7 +98,7 @@ class BasketController
     public function checkoutAction(Request $request, $basketId)
     {
         $basketId = new BasketId($basketId);
-        $command  = new Checkout($basketId);
+        $command  = new CheckoutBasket($basketId);
 
         $this->commandBus->dispatch($command);
 

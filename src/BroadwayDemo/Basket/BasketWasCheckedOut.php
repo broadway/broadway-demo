@@ -11,7 +11,7 @@
 
 namespace BroadwayDemo\Basket;
 
-class BasketCheckedOut extends BasketEvent
+class BasketWasCheckedOut extends BasketEvent
 {
     private $products;
 

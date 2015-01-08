@@ -11,6 +11,6 @@
 
 namespace BroadwayDemo\Basket;
 
-class Checkout extends BasketCommand
+class CheckoutBasket extends BasketCommand
 {
 }

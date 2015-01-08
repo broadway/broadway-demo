@@ -11,7 +11,7 @@
 
 namespace BroadwayDemo\ReadModel;
 
-use BroadwayDemo\Basket\BasketCheckedOut;
+use BroadwayDemo\Basket\BasketWasCheckedOut;
 use BroadwayDemo\Basket\BasketId;
 use Broadway\ReadModel\InMemory\InMemoryRepository;
 use Broadway\ReadModel\Testing\ProjectorScenarioTestCase;
@@ -37,7 +37,7 @@ class PeopleThatBoughtThisProductAlsoBoughtProjectorTest extends ProjectorScenar
         $productId3 = 'productId3';
 
         $this->scenario->given(array())
-            ->when(new BasketCheckedOut($basketId, array($productId1 => 1, $productId2 => 2, $productId3 => 3)))
+            ->when(new BasketWasCheckedOut($basketId, array($productId1 => 1, $productId2 => 2, $productId3 => 3)))
             ->then(array(
                 $this->createReadModel($productId1, array($productId2 => 2, $productId3 => 3)),
                 $this->createReadModel($productId2, array($productId1 => 1, $productId3 => 3)),
@@ -56,9 +56,9 @@ class PeopleThatBoughtThisProductAlsoBoughtProjectorTest extends ProjectorScenar
 
         $this->scenario
             ->given(array(
-                new BasketCheckedOut($basketId, array($productId1 => 1, $productId2 => 2))
+                new BasketWasCheckedOut($basketId, array($productId1 => 1, $productId2 => 2))
             ))
-            ->when(new BasketCheckedOut($basketId, array($productId1 => 1, $productId2 => 2)))
+            ->when(new BasketWasCheckedOut($basketId, array($productId1 => 1, $productId2 => 2)))
             ->then(array(
                 $this->createReadModel($productId1, array($productId2 => 4)),
                 $this->createReadModel($productId2, array($productId1 => 2)),
