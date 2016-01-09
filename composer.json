@@ -34,9 +34,15 @@
             "": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-0": {
+            "": "test/"
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
-        "instaclick/base-test-bundle": "~0.5"
+        "instaclick/base-test-bundle": "~0.5",
+        "phpunit/phpunit": "^4.5"
     }
 }

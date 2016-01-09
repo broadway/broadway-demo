@@ -45,11 +45,19 @@ This demo doesn't have a GUI, only an API with the following endpoints:
 
 ## Running the tests
 
-Login to your vagrant box to run the tests. By default we exclude functional tests, by providing `--exclude-group=none` you can run the functional tests as well.
+By default we exclude functional tests, by providing `--exclude-group=none` you can run the functional tests as well.
+
+### Vagrant
 
 ```sh
 cd /vagrant
 phpunit --exclude-group=none
+```
+
+### Docker Compose
+
+```sh
+docker-compose run app vendor/bin/phpunit --exclude-group=none
 ```
 
 ## Code structure
