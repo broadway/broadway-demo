@@ -10,7 +10,7 @@
  */
 
 if (file_exists($file = __DIR__.'/../vendor/autoload.php')) {
-    $loader = require_once $file;
+    $loader = require $file;
     $loader->add('BroadwayDemo', __DIR__);
     $loader->add('Broadway', __DIR__ . '/../vendor/qqq/broadway/test');
 } else {
