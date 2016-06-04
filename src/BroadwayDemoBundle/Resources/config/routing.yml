@@ -1,29 +1,29 @@
 create_basket:
-    pattern: /basket
+    path: /basket
     methods: [POST]
     defaults:
         _controller: broadway_demo.controller.basket:pickUpBasketAction
 
 add_product:
-    pattern: /basket/{basketId}/addProduct
+    path: /basket/{basketId}/addProduct
     methods: [POST]
     defaults:
         _controller: broadway_demo.controller.basket:addProductToBasketAction
 
 remove_product:
-    pattern: /basket/{basketId}/removeProduct
+    path: /basket/{basketId}/removeProduct
     methods: [POST]
     defaults:
         _controller: broadway_demo.controller.basket:removeProductFromBasketAction
 
 checkout:
-    pattern: /basket/{basketId}/checkout
+    path: /basket/{basketId}/checkout
     methods: [POST]
     defaults:
         _controller: broadway_demo.controller.basket:checkoutAction
 
 get_advice:
-    pattern: /advice/{productId}
+    path: /advice/{productId}
     methods: [GET]
     defaults:
         _controller: broadway_demo.controller.people_that_bought_this_product:getAdviceAction
