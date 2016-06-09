@@ -4,7 +4,7 @@ This repository contains a demo application to show how [Broadway] can be used w
 The example is taken from the [Practical Event Sourcing][practical-eventsourcing] talk from [Mathias Verraes].
 
 [Broadway]: https://github.com/qandidate-labs/broadway
-[practical-eventsourcing]: http://verraes.net/2014/03/practical-event-sourcing/
+[practical-eventsourcing]: http://verraes.net/2014/03/practical-event-sourcing.markdown/
 [Mathias Verraes]: https://twitter.com/mathiasverraes
 
 ## Installation
