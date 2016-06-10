@@ -26,7 +26,7 @@ class BasketCommandHandler extends CommandHandler
     {
         $basket = Basket::pickUpBasket($command->getBasketId());
 
-        $this->repository->add($basket);
+        $this->repository->save($basket);
     }
 
     public function handleAddProductToBasket(AddProductToBasket $command)
@@ -34,7 +34,7 @@ class BasketCommandHandler extends CommandHandler
         $basket = $this->repository->load($command->getBasketId());
         $basket->addProduct($command->getProductId(), $command->getProductName());
 
-        $this->repository->add($basket);
+        $this->repository->save($basket);
     }
 
     public function handleRemoveProductFromBasket(RemoveProductFromBasket $command)
@@ -42,7 +42,7 @@ class BasketCommandHandler extends CommandHandler
         $basket = $this->repository->load($command->getBasketId());
         $basket->removeProduct($command->getProductId());
 
-        $this->repository->add($basket);
+        $this->repository->save($basket);
     }
 
     public function handleCheckout(Checkout $command)
@@ -50,6 +50,6 @@ class BasketCommandHandler extends CommandHandler
         $basket = $this->repository->load($command->getBasketId());
         $basket->checkout();
 
-        $this->repository->add($basket);
+        $this->repository->save($basket);
     }
 }
