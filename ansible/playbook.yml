@@ -16,6 +16,9 @@
     - name: add apt repository
       apt_repository: repo="deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main" state=present update_cache=yes
 
+    - name: add apt  php repository
+      apt_repository: repo="ppa:ondrej/php5-5.6" update_cache=yes
+
     - name: Install packages
       apt: package={{item}} state=present
       with_items:
