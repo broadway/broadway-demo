@@ -31,7 +31,8 @@
     },
     "autoload": {
         "psr-0": {
-            "": "src/"
+            "BroadwayDemo": "src/",
+            "BroadwayDemoBundle": "src/"
         }
     },
     "autoload-dev": {
@@ -43,6 +44,6 @@
     "prefer-stable": true,
     "require-dev": {
         "instaclick/base-test-bundle": "~0.5",
-        "phpunit/phpunit": "^4.5"
+        "phpunit/phpunit": "^5.5"
     }
 }
