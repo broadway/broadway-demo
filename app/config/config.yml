@@ -14,6 +14,9 @@ doctrine:
 broadway:
     read_model:
         repository: elasticsearch
+        elasticsearch:
+            hosts:
+                - elasticsearch:9200
 
 parameters:
     storage_suffix: "_%kernel.environment%"

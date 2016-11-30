@@ -9,15 +9,18 @@
   tasks:
     - name: Update apt-get
       apt: update_cache=yes
+      become: true
 
     - name: add Public Signing Key
       shell: wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
+      become: true
 
     - name: add apt repository
       apt_repository: repo="deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main" state=present update_cache=yes
+      become: true
 
     - name: Install packages
-      apt: package={{item}} state=present
+      apt: name={{item}} state=present
       with_items:
           - curl
           - git
@@ -30,6 +33,7 @@
           - elasticsearch
           - mongodb-server
           - nginx
+      become: true
 
     - name: Install composer
       get_url: url=https://getcomposer.org/composer.phar dest=/usr/local/bin/composer mode=755 owner=vagrant group=vagrant
@@ -39,6 +43,7 @@
 
     - name: Enable ElasticSearch service
       service: name=elasticsearch state=started enabled=yes
+      become: true
 
     - name: Install vhost
       template: src=templates/nginx.conf dest=/etc/nginx/sites-available/default

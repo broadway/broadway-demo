@@ -41,7 +41,6 @@ class WebTestCase extends BaseWebTestCase
 
         $this->setUpEventStore($container);
         $this->setUpReadModel($container);
-        $this->setUpSagaState($container);
     }
 
     private function setUpEventStore($container)
@@ -54,13 +53,6 @@ class WebTestCase extends BaseWebTestCase
         $schemaManager = $connection->getSchemaManager();
 
         $schemaManager->dropAndCreateTable($table);
-    }
-
-    private function setUpSagaState($container)
-    {
-        $mongo = $container->get('broadway.saga.state.mongodb_connection');
-
-        $mongo->dropDatabase('broadway_functional');
     }
 
     private function setUpReadModel($container)

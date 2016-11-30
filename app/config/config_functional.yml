@@ -3,3 +3,9 @@ imports:
 
 framework:
     test: ~
+
+broadway:
+    read_model:
+        elasticsearch:
+            hosts:
+                - localhost:9200
