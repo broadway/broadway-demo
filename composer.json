@@ -18,7 +18,7 @@
     ],
     "require": {
         "broadway/broadway": "^1.0@dev",
-        "broadway/broadway-bundle": "dev-master@dev",
+        "broadway/broadway-bundle": "^0.2",
         "doctrine/doctrine-bundle": "~1.6",
         "elasticsearch/elasticsearch": "~2.0",
         "symfony/browser-kit": "~2.8",
