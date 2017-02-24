@@ -16,7 +16,7 @@ broadway:
         repository: elasticsearch
         elasticsearch:
             hosts:
-                - elasticsearch:9200
+                - localhost:9200
 
 parameters:
     storage_suffix: "_%kernel.environment%"

@@ -3,10 +3,15 @@
   hosts: default
   handlers:
     - name: restart web
-      with_items: [nginx, php5-fpm]
+      with_items: [nginx, php7-fpm]
       service: name={{ item }} state=restarted
 
   tasks:
+    - name: Add PHP apt repository
+      apt_repository:
+        repo: 'ppa:ondrej/php'
+      become: true
+
     - name: Update apt-get
       apt: update_cache=yes
       become: true
@@ -24,11 +29,13 @@
       with_items:
           - curl
           - git
-          - php5-fpm
-          - php5-cli
-          - php5-curl
-          - php5-mongo
-          - php5-sqlite
+          - php7.0-fpm
+          - php7.0-cli
+          - php7.0-curl
+          - php7.0-mongodb
+          - php7.0-sqlite3
+          - php7.0-mbstring
+          - php7.0-xml
           - openjdk-7-jre
           - elasticsearch
           - mongodb-server
@@ -37,9 +44,11 @@
 
     - name: Install composer
       get_url: url=https://getcomposer.org/composer.phar dest=/usr/local/bin/composer mode=755 owner=vagrant group=vagrant
+      become: true
 
     - name: Install phpunit
       get_url: url=https://phar.phpunit.de/phpunit.phar dest=/usr/local/bin/phpunit mode=755 owner=vagrant group=vagrant
+      become: true
 
     - name: Enable ElasticSearch service
       service: name=elasticsearch state=started enabled=yes
@@ -47,21 +56,24 @@
 
     - name: Install vhost
       template: src=templates/nginx.conf dest=/etc/nginx/sites-available/default
+      become: true
       notify: restart web
 
     - name: Run php-fpm as vagrant
-      lineinfile: dest=/etc/php5/fpm/pool.d/www.conf line='user = vagrant'
+      lineinfile: dest=/etc/php/7.0/fpm/pool.d/www.conf line='user = vagrant'
+      become: true
       notify: restart web
 
     - name: Enable display_errors
-      lineinfile: dest=/etc/php5/fpm/php.ini regexp='^display_errors = ' line='display_errors = On'
+      lineinfile: dest=/etc/php/7.0/fpm/php.ini regexp='^display_errors = ' line='display_errors = On'
+      become: true
       notify: restart web
 
     - name: Run required services
       service: name={{ item }} state=started
       with_items:
           - nginx
-          - php5-fpm
+          - php7.0-fpm
           - mongodb
       tags: services
 
