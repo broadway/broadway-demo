@@ -13,13 +13,13 @@ namespace BroadwayDemo\ReadModel;
 
 use BroadwayDemo\Basket\BasketCheckedOut;
 use Broadway\ReadModel\Projector;
-use Broadway\ReadModel\RepositoryInterface;
+use Broadway\ReadModel\Repository;
 
 class PeopleThatBoughtThisProductAlsoBoughtProjector extends Projector
 {
     private $repository;
 
-    public function __construct(RepositoryInterface $repository)
+    public function __construct(Repository $repository)
     {
         $this->repository = $repository;
     }

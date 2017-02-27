@@ -11,7 +11,7 @@
 
 namespace BroadwayDemoBundle\Controller;
 
-use Broadway\ReadModel\RepositoryInterface;
+use Broadway\ReadModel\Repository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +20,7 @@ class PeopleThatBoughtThisProductAlsoBoughtController
 {
     private $repository;
 
-    public function __construct(RepositoryInterface $repository)
+    public function __construct(Repository $repository)
     {
         $this->repository = $repository;
     }

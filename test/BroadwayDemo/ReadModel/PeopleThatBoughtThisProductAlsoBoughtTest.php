@@ -11,14 +11,14 @@
 
 namespace BroadwayDemo\ReadModel;
 
-use Broadway\ReadModel\Testing\ReadModelTestCase;
+use Broadway\ReadModel\Testing\SerializableReadModelTestCase;
 
-class PeopleThatBoughtThisProductAlsoBoughtTest extends ReadModelTestCase
+class PeopleThatBoughtThisProductAlsoBoughtTest extends SerializableReadModelTestCase
 {
     /**
      * {@inheritDoc}
      */
-    protected function createReadModel()
+    protected function createSerializableReadModel()
     {
         $readModel = new PeopleThatBoughtThisProductAlsoBought('purchased_product_id');
 
@@ -33,7 +33,7 @@ class PeopleThatBoughtThisProductAlsoBoughtTest extends ReadModelTestCase
      */
     public function it_exposes_the_bought_product_count()
     {
-        $readModel = $this->createReadModel();
+        $readModel = $this->createSerializableReadModel();
 
         $this->assertEquals(5, $readModel->numberOfTimesProductHasBeenPurchased('also_bought_product_id'));
         $this->assertEquals(2, $readModel->numberOfTimesProductHasBeenPurchased('another_bought_product_id'));

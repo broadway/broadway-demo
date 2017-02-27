@@ -12,7 +12,7 @@
 namespace BroadwayDemoBundle\Controller;
 
 use Assert\Assertion as Assert;
-use Broadway\CommandHandling\CommandBusInterface;
+use Broadway\CommandHandling\CommandBus;
 use Broadway\UuidGenerator\UuidGeneratorInterface;
 use BroadwayDemo\Basket\AddProductToBasket;
 use BroadwayDemo\Basket\BasketId;
@@ -29,7 +29,7 @@ class BasketController
     private $uuidGenerator;
 
     public function __construct(
-        CommandBusInterface $commandBus,
+        CommandBus $commandBus,
         UuidGeneratorInterface $uuidGenerator
     ) {
         $this->commandBus    = $commandBus;

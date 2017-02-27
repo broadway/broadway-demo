@@ -11,10 +11,9 @@
 
 namespace BroadwayDemo\ReadModel;
 
-use Broadway\ReadModel\ReadModelInterface;
-use Broadway\Serializer\SerializableInterface;
+use Broadway\ReadModel\SerializableReadModel;
 
-class PeopleThatBoughtThisProductAlsoBought implements ReadModelInterface, SerializableInterface
+class PeopleThatBoughtThisProductAlsoBought implements SerializableReadModel
 {
     private $purchasedProductId;
     private $otherProducts = array();

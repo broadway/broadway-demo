@@ -11,9 +11,9 @@
 
 namespace BroadwayDemo\Basket;
 
-use Broadway\CommandHandling\CommandHandler;
+use Broadway\CommandHandling\SimpleCommandHandler;
 
-class BasketCommandHandler extends CommandHandler
+class BasketCommandHandler extends SimpleCommandHandler
 {
     private $repository;
 

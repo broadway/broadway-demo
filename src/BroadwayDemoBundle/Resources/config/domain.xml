@@ -8,7 +8,7 @@
 
         <service id="broadway_demo.basket.command_handler" class="BroadwayDemo\Basket\BasketCommandHandler">
             <argument type="service" id="broadway_demo.basket.repository" />
-            <tag name="command_handler"/>
+            <tag name="broadway.command_handler"/>
         </service>
 
         <service id="broadway_demo.basket.repository" class="BroadwayDemo\Basket\BasketRepository">
