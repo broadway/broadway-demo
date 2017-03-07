@@ -11,9 +11,9 @@
 
 namespace BroadwayDemo\Basket;
 
-use Broadway\Serializer\SerializableInterface;
+use Broadway\Serializer\Serializable;
 
-abstract class BasketEvent implements SerializableInterface
+abstract class BasketEvent implements Serializable
 {
     private $basketId;
 

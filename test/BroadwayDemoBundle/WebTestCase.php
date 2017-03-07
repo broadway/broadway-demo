@@ -79,7 +79,7 @@ class WebTestCase extends BaseWebTestCase
     }
 
     /**
-     * @return Symfony\Component\DependencyInjection\ContainerInterface
+     * @return \Symfony\Component\DependencyInjection\ContainerInterface
      */
     protected function getContainer()
     {
@@ -89,7 +89,7 @@ class WebTestCase extends BaseWebTestCase
     /**
      * @param string $uuid
      *
-     * @return Broadway\Domain\DomainEventStreamInterface
+     * @return \Broadway\Domain\DomainEventStream
      */
     protected function getEvents($uuid)
     {
@@ -97,7 +97,7 @@ class WebTestCase extends BaseWebTestCase
     }
 
     /**
-     * @return Broadway\EventStore\EventStoreInterface
+     * @return \Broadway\EventStore\EventStore
      */
     protected function getEventStore()
     {

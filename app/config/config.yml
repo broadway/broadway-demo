@@ -12,6 +12,9 @@ doctrine:
                 path: "%kernel.cache_dir%.events.sqlite"
 
 broadway:
+    event_store:
+        dbal:
+            enabled: true
     read_model:
         repository: elasticsearch
         elasticsearch:

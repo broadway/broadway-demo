@@ -12,15 +12,15 @@
 namespace BroadwayDemo\Basket;
 
 use Broadway\CommandHandling\Testing\CommandHandlerScenarioTestCase;
-use Broadway\EventHandling\EventBusInterface;
-use Broadway\EventStore\EventStoreInterface;
+use Broadway\EventHandling\EventBus;
+use Broadway\EventStore\EventStore;
 
 abstract class BasketCommandHandlerTest extends CommandHandlerScenarioTestCase
 {
     /**
      * {@inheritDoc}
      */
-    protected function createCommandHandler(EventStoreInterface $eventStore, EventBusInterface $eventBus)
+    protected function createCommandHandler(EventStore $eventStore, EventBus $eventBus)
     {
         return new BasketCommandHandler(
             new BasketRepository($eventStore, $eventBus)
