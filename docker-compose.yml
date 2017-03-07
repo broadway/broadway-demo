@@ -8,4 +8,6 @@ app:
     - 8000:8000
 
 elasticsearch:
-  image: elasticsearch:1.7
+  build: docker/elasticsearch
+  ports:
+    - 9200:9200
