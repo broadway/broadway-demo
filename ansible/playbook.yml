@@ -3,7 +3,7 @@
   hosts: default
   handlers:
     - name: restart web
-      with_items: [nginx, php7-fpm]
+      with_items: [nginx, php7.0-fpm]
       service: name={{ item }} state=restarted
 
   tasks:
