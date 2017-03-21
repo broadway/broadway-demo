@@ -47,7 +47,7 @@
       become: true
 
     - name: Install phpunit
-      get_url: url=https://phar.phpunit.de/phpunit.phar dest=/usr/local/bin/phpunit mode=755 owner=vagrant group=vagrant
+      get_url: url=https://phar.phpunit.de/phpunit-5.7.phar dest=/usr/local/bin/phpunit mode=755 owner=vagrant group=vagrant
       become: true
 
     - name: Enable ElasticSearch service

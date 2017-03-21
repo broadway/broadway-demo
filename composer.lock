@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "beberlei/assert",
-            "version": "v2.7.3",
+            "version": "v2.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beberlei/assert.git",
-                "reference": "5972776d6a9eedfd3c55216341434e19cb50418f"
+                "reference": "3ee3bc468a3ce4bbfc3d74f53c6cdb5242d39d1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beberlei/assert/zipball/5972776d6a9eedfd3c55216341434e19cb50418f",
-                "reference": "5972776d6a9eedfd3c55216341434e19cb50418f",
+                "url": "https://api.github.com/repos/beberlei/assert/zipball/3ee3bc468a3ce4bbfc3d74f53c6cdb5242d39d1a",
+                "reference": "3ee3bc468a3ce4bbfc3d74f53c6cdb5242d39d1a",
                 "shasum": ""
             },
             "require": {
@@ -25,8 +25,8 @@
                 "php": ">=5.3"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.0",
-                "phpunit/phpunit": "@stable"
+                "friendsofphp/php-cs-fixer": "^2.1.1",
+                "phpunit/phpunit": "^4|^5"
             },
             "type": "library",
             "autoload": {
@@ -59,7 +59,7 @@
                 "assertion",
                 "validation"
             ],
-            "time": "2017-01-24T15:14:39+00:00"
+            "time": "2017-03-14T18:06:52+00:00"
         },
         {
             "name": "broadway/broadway",
@@ -145,16 +145,16 @@
         },
         {
             "name": "broadway/broadway-bundle",
-            "version": "0.2.1",
+            "version": "0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/broadway/broadway-bundle.git",
-                "reference": "c4d8ec1ef4a355d7e3330c2e69ee46b354f5ab37"
+                "reference": "72a938887b0e7980e05e23ca200e77d8f18e62eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/broadway/broadway-bundle/zipball/c4d8ec1ef4a355d7e3330c2e69ee46b354f5ab37",
-                "reference": "c4d8ec1ef4a355d7e3330c2e69ee46b354f5ab37",
+                "url": "https://api.github.com/repos/broadway/broadway-bundle/zipball/72a938887b0e7980e05e23ca200e77d8f18e62eb",
+                "reference": "72a938887b0e7980e05e23ca200e77d8f18e62eb",
                 "shasum": ""
             },
             "require": {
@@ -165,7 +165,7 @@
                 "symfony/http-kernel": "^2.3|^3.0"
             },
             "require-dev": {
-                "doctrine/dbal": "~2.4",
+                "broadway/event-store-dbal": "^0.1",
                 "elasticsearch/elasticsearch": "~1.0|^2.0",
                 "instaclick/base-test-bundle": "~0.5",
                 "matthiasnoback/symfony-config-test": "^2.0",
@@ -225,20 +225,20 @@
                 "domain-driven design",
                 "event sourcing"
             ],
-            "time": "2017-03-07T09:39:57+00:00"
+            "time": "2017-03-09T07:42:47+00:00"
         },
         {
             "name": "broadway/event-store-dbal",
-            "version": "0.1.0",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/broadway/event-store-dbal.git",
-                "reference": "b888a3bed437908df6e1af78e43d37a1cb01012d"
+                "reference": "f4b5cf3d10032c44a5c39343e465c29d5eb1499c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/broadway/event-store-dbal/zipball/b888a3bed437908df6e1af78e43d37a1cb01012d",
-                "reference": "b888a3bed437908df6e1af78e43d37a1cb01012d",
+                "url": "https://api.github.com/repos/broadway/event-store-dbal/zipball/f4b5cf3d10032c44a5c39343e465c29d5eb1499c",
+                "reference": "f4b5cf3d10032c44a5c39343e465c29d5eb1499c",
                 "shasum": ""
             },
             "require": {
@@ -294,7 +294,7 @@
                 }
             ],
             "description": "Event store implementation using doctrine/dbal",
-            "time": "2017-03-06T12:32:22+00:00"
+            "time": "2017-03-16T12:12:23+00:00"
         },
         {
             "name": "broadway/read-model-elasticsearch",
@@ -1287,16 +1287,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.9",
+            "version": "v2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "6968531206671f94377b01dc7888d5d1b858a01b"
+                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/6968531206671f94377b01dc7888d5d1b858a01b",
-                "reference": "6968531206671f94377b01dc7888d5d1b858a01b",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/634bae8e911eefa89c1abfbf1b66da679ac8f54d",
+                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d",
                 "shasum": ""
             },
             "require": {
@@ -1331,7 +1331,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-03-03T20:43:42+00:00"
+            "time": "2017-03-13T16:27:32+00:00"
         },
         {
             "name": "psr/log",
@@ -1431,21 +1431,21 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.5.2",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "5677cfe02397dd6b58c861870dfaa5d9007d3954"
+                "reference": "0b7bdfb180e72c8d76e75a649ced67e392201458"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/5677cfe02397dd6b58c861870dfaa5d9007d3954",
-                "reference": "5677cfe02397dd6b58c861870dfaa5d9007d3954",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/0b7bdfb180e72c8d76e75a649ced67e392201458",
+                "reference": "0b7bdfb180e72c8d76e75a649ced67e392201458",
                 "shasum": ""
             },
             "require": {
                 "paragonie/random_compat": "^1.0|^2.0",
-                "php": ">=5.4"
+                "php": "^5.4 || ^7.0"
             },
             "replace": {
                 "rhumsaa/uuid": "self.version"
@@ -1509,7 +1509,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2016-11-22T19:21:44+00:00"
+            "time": "2017-03-18T15:38:09+00:00"
         },
         {
             "name": "react/promise",
@@ -1958,16 +1958,16 @@
         },
         {
             "name": "symfony/doctrine-bridge",
-            "version": "v3.2.4",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/doctrine-bridge.git",
-                "reference": "ee0d93edee5e3f21dd588571119b013c5478d352"
+                "reference": "d44515b5e54708ce821c2438704c70bbb787d276"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/ee0d93edee5e3f21dd588571119b013c5478d352",
-                "reference": "ee0d93edee5e3f21dd588571119b013c5478d352",
+                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/d44515b5e54708ce821c2438704c70bbb787d276",
+                "reference": "d44515b5e54708ce821c2438704c70bbb787d276",
                 "shasum": ""
             },
             "require": {
@@ -1975,13 +1975,16 @@
                 "php": ">=5.5.9",
                 "symfony/polyfill-mbstring": "~1.0"
             },
+            "conflict": {
+                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0"
+            },
             "require-dev": {
                 "doctrine/data-fixtures": "1.0.*",
                 "doctrine/dbal": "~2.4",
-                "doctrine/orm": "~2.4,>=2.4.5",
+                "doctrine/orm": "^2.4.5",
                 "symfony/dependency-injection": "~2.8|~3.0",
                 "symfony/expression-language": "~2.8|~3.0",
-                "symfony/form": "~3.0,>=3.0.5",
+                "symfony/form": "^3.2.5",
                 "symfony/http-kernel": "~2.8|~3.0",
                 "symfony/property-access": "~2.8|~3.0",
                 "symfony/property-info": "~2.8|3.0",
@@ -1989,7 +1992,7 @@
                 "symfony/security": "~2.8|~3.0",
                 "symfony/stopwatch": "~2.8|~3.0",
                 "symfony/translation": "~2.8|~3.0",
-                "symfony/validator": "~2.8|~3.0"
+                "symfony/validator": "^2.8.18|^3.2.5"
             },
             "suggest": {
                 "doctrine/data-fixtures": "",
@@ -2029,7 +2032,7 @@
             ],
             "description": "Symfony Doctrine Bridge",
             "homepage": "https://symfony.com",
-            "time": "2017-02-14T16:27:43+00:00"
+            "time": "2017-03-05T17:42:14+00:00"
         },
         {
             "name": "symfony/dom-crawler",
@@ -4052,16 +4055,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.15",
+            "version": "5.7.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b99112aecc01f62acf3d81a3f59646700a1849e5"
+                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b99112aecc01f62acf3d81a3f59646700a1849e5",
-                "reference": "b99112aecc01f62acf3d81a3f59646700a1849e5",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/68752b665d3875f9a38a357e3ecb35c79f8673bf",
+                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf",
                 "shasum": ""
             },
             "require": {
@@ -4130,7 +4133,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-02T15:22:43+00:00"
+            "time": "2017-03-19T16:52:12+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
