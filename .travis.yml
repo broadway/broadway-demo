@@ -12,7 +12,7 @@ install:
   - composer install
 
 script:
-  - phpunit --exclude-group=none
+  - ./vendor/bin/phpunit --exclude-group=none
 
 services:
   - elasticsearch
