@@ -11,7 +11,7 @@
 
 namespace BroadwayDemo\Basket;
 
-class CheckoutTest extends BasketCommandHandlerTest
+class CheckoutBasketTest extends BasketCommandHandlerTest
 {
     /**
      * @test
@@ -27,9 +27,9 @@ class CheckoutTest extends BasketCommandHandlerTest
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
                 new ProductWasAddedToBasket($basketId, 'productId2', 'Awesome Product Name')
             ))
-            ->when(new Checkout($basketId))
+            ->when(new CheckoutBasket($basketId))
             ->then(array(
-                new BasketCheckedOut($basketId, array('productId' => 2, 'productId2' => 1))
+                new BasketWasCheckedOut($basketId, array('productId' => 2, 'productId2' => 1))
         ));
     }
 
@@ -45,7 +45,7 @@ class CheckoutTest extends BasketCommandHandlerTest
             ->given(array(
                 new BasketWasPickedUp($basketId),
             ))
-            ->when(new Checkout($basketId));
+            ->when(new CheckoutBasket($basketId));
     }
 
     /**
@@ -62,7 +62,7 @@ class CheckoutTest extends BasketCommandHandlerTest
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
                 new ProductWasRemovedFromBasket($basketId, 'productId')
             ))
-            ->when(new Checkout($basketId));
+            ->when(new CheckoutBasket($basketId));
     }
 
     /**
@@ -76,9 +76,9 @@ class CheckoutTest extends BasketCommandHandlerTest
             ->given(array(
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
-                new BasketCheckedOut($basketId, array('productId' => 1))
+                new BasketWasCheckedOut($basketId, array('productId' => 1))
             ))
-            ->when(new Checkout($basketId))
+            ->when(new CheckoutBasket($basketId))
             ->then(array());
     }
 }

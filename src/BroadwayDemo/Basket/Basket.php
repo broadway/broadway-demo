@@ -112,11 +112,11 @@ class Basket extends EventSourcedAggregateRoot
         }
 
         $this->apply(
-            new BasketCheckedOut($this->basketId, $this->productCountById)
+            new BasketWasCheckedOut($this->basketId, $this->productCountById)
         );
     }
 
-    protected function applyBasketCheckedOut(BasketCheckedOut $event)
+    protected function applyBasketWasCheckedOut(BasketWasCheckedOut $event)
     {
         $this->hasBeenCheckedOut = true;
     }

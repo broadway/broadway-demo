@@ -11,7 +11,7 @@
 
 namespace BroadwayDemo\ReadModel;
 
-use BroadwayDemo\Basket\BasketCheckedOut;
+use BroadwayDemo\Basket\BasketWasCheckedOut;
 use Broadway\ReadModel\Projector;
 use Broadway\ReadModel\Repository;
 
@@ -24,7 +24,7 @@ class PeopleThatBoughtThisProductAlsoBoughtProjector extends Projector
         $this->repository = $repository;
     }
 
-    protected function applyBasketCheckedOut(BasketCheckedOut $event)
+    protected function applyBasketWasCheckedOut(BasketWasCheckedOut $event)
     {
         foreach ($event->getProducts() as $productId => $count) {
             $readModel = $this->getReadModel($productId);
