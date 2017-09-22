@@ -19,7 +19,8 @@ broadway:
         repository: elasticsearch
         elasticsearch:
             hosts:
-                - localhost:9200
+                - localhost:9200 # for vagrant enviroment
+                # - elasticsearch:9200 # use for docker enviroment
 
 parameters:
     storage_suffix: "_%kernel.environment%"
