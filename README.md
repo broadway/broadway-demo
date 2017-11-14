@@ -7,35 +7,11 @@ The example is taken from the [Practical Event Sourcing][practical-eventsourcing
 [practical-eventsourcing]: http://verraes.net/2014/03/practical-event-sourcing.markdown/
 [Mathias Verraes]: https://twitter.com/mathiasverraes
 
-## Installation
+For simplicity the demo uses the official [DBAL event store] and a custom DBAL read model implementation.
+You will need to have [SQLite] installed to run the demo.
 
-### Vagrant
-
-```sh
-vagrant up
-```
-
-Vagrant will provision the machine (using ansible).
-
-The box is then available at `192.168.42.100`, the vhost is configured with domain `broadway.local`.
-
-If you don't have ansible installed, you will have to run `composer install` yourself. And run `app/console broadway:event-store:schema:init` to initialize the database.
-
-### Docker Compose
-
-```sh
-docker-compose up -d
-```
-
-Docker-compose will set up the containers needed to run this demo.
-
-
-```sh
-docker-compose exec app /bin/bash
-app/console broadway:event-store:schema:init
-```
-
-The app will be available at http://localhost:8000 as configured in `docker-compose.yml`.
+[DBAL event store]: https://github.com/broadway/event-store-dbal
+[SQLite]: https://www.sqlite.org/
 
 ## Running the demo
 
@@ -58,19 +34,6 @@ http://localhost:9200/_plugin/head/
 ## Running the tests
 
 By default we exclude functional tests, by providing `--exclude-group=none` you can run the functional tests as well.
-
-### Vagrant
-
-```sh
-cd /vagrant
-phpunit --exclude-group=none
-```
-
-### Docker Compose
-
-```sh
-docker-compose run app vendor/bin/phpunit --exclude-group=none
-```
 
 ## Code structure
 
