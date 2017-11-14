@@ -13,9 +13,6 @@ namespace BroadwayDemoBundle\Functional;
 
 use BroadwayDemoBundle\WebTestCase;
 
-/**
- * @group functional
- */
 class AddProductToBasketTest extends WebTestCase
 {
     /**

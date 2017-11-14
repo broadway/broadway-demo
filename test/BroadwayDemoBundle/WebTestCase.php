@@ -11,6 +11,7 @@
 
 namespace BroadwayDemoBundle;
 
+use Doctrine\DBAL\Schema\Schema;
 use IC\Bundle\Base\TestBundle\Test\WebTestCase as BaseWebTestCase;
 
 class WebTestCase extends BaseWebTestCase
@@ -57,15 +58,24 @@ class WebTestCase extends BaseWebTestCase
 
     private function setUpReadModel($container)
     {
-        $elasticsearch = $container->get('my_elasticsearch_client');
+        $schemaManager = $container->get('doctrine.dbal.default_connection')->getSchemaManager();
+        $schema        = $schemaManager->createSchema();
 
-        $indices = $this->getReadModelIndices();
+        $tableName = 'read_model';
 
-        foreach ($indices as $index) {
-            if ($elasticsearch->indices()->exists(array('index' => $index))) {
-                $elasticsearch->indices()->delete(array('index' => $index));
-            }
+        if ($schema->hasTable($tableName)) {
+            $schema->dropTable($tableName);
+            $schemaManager->dropTable($tableName);
         }
+
+        $table = $schema->createTable('read_model');
+        $table->addColumn('id', 'integer', ['autoincrement' => true]);
+        $table->addColumn('uuid', 'guid', ['length' => 36]);
+        $table->addColumn('data', 'text');
+        $table->setPrimaryKey(['id']);
+        $table->addUniqueIndex(['uuid']);
+
+        $schemaManager->createTable($table);
     }
 
     /**
