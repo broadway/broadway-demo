@@ -4,11 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="elasticsearch" type="collection">
-        </parameter>
-    </parameters>
-
     <services>
 
         <service id="broadway_demo.basket.command_handler" class="BroadwayDemo\Basket\BasketCommandHandler">
@@ -43,17 +38,11 @@
             <argument type="service" id="broadway.uuid.converter" />
         </service>
 
-        <service id="my_read_model_repository_factory" class="Broadway\ReadModel\ElasticSearch\ElasticSearchRepositoryFactory">
-            <argument type="service" id="my_elasticsearch_client" />
+        <service id="my_read_model_repository_factory" class="BroadwayDemo\ReadModel\DBALRepositoryFactory">
+            <argument type="service" id="doctrine.dbal.default_connection" />
             <argument type="service" id="broadway.serializer.readmodel" />
+            <argument>read_model</argument>
         </service>
-
-        <service id="my_elasticsearch_client" class="Elasticsearch\Client">
-            <factory service="broadway.elasticsearch.client_factory" method="create" />
-            <argument>%elasticsearch%</argument>
-        </service>
-
-        <service id="broadway.elasticsearch.client_factory" class="Broadway\ReadModel\ElasticSearch\ElasticSearchClientFactory" public="false" />
 
     </services>
 

@@ -13,6 +13,3 @@ install:
 
 script:
   - ./vendor/bin/phpunit --exclude-group=none
-
-services:
-  - elasticsearch
