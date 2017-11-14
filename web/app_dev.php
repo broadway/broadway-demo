@@ -17,10 +17,7 @@ $loader = require __DIR__ .'/../vendor/autoload.php';
 
 require __DIR__ . '/../app/AppKernel.php';
 
-$debug       = true;
-$environment = 'dev';
-
-$kernel = new AppKernel($environment, $debug);
+$kernel = new AppKernel('dev', true);
 
 // Stack it!
 $generator = new UuidRequestIdGenerator(42);
