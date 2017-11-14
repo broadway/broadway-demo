@@ -1,2 +1,0 @@
-qprofile:
-    resource: "@BroadwayDemoBundle/Resources/config/routing.yml"
