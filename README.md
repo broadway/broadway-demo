@@ -16,7 +16,9 @@ You will need to have [SQLite] installed to run the demo.
 ## Running the demo
 
 ```
+composer install
 app/console broadway:event-store:schema:init
+app/console broadway:read-model:create
 app/console server:run
 ```
 
@@ -61,7 +63,11 @@ $ curl http://localhost:8000/advice/2011
 
 ## Running the tests
 
-By default we exclude functional tests, by providing `--exclude-group=none` you can run the functional tests as well.
+To run all the tests:
+
+```
+./vendor/bin/phpunit
+```
 
 ## Code structure
 
@@ -76,6 +82,6 @@ services (controllers etc).
 
 The domain specific tests can be found in `test/BroadwayDemo/Basket` and `test/BroadwayDemo/ReadModel`
 
-Note that there is a functional test (using ElasticSearch) in `test/BroadwayDemoBundle/Functional`
+Note that there is a functional test in `test/BroadwayDemoBundle/Functional`
 
 For more information, read our blog post about this demo: http://labs.qandidate.com/blog/2014/12/30/a-broadway-demo-application/

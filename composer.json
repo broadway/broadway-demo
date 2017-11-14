@@ -17,10 +17,10 @@
         }
     ],
     "require": {
+        "ext-pdo_sqlite": "*",
         "broadway/broadway": "^1.0",
         "broadway/broadway-bundle": "^0.3",
         "broadway/event-store-dbal": "^0.1",
-        "broadway/read-model-elasticsearch": "^0.1",
         "symfony/browser-kit": "~2.8",
         "symfony/console": "~2.8",
         "symfony/class-loader": "~2.8",

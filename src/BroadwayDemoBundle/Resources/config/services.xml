@@ -20,5 +20,13 @@
             <tag name="monolog.processor" />
         </service>
 
+        <service id="broadway_demo.command.create_read_model" class="BroadwayDemoBundle\Command\CreateReadModelCommand">
+            <tag name="console.command" />
+        </service>
+
+        <service id="broadway_demo.command.drop_read_model" class="BroadwayDemoBundle\Command\DropReadModelCommand">
+            <tag name="console.command" />
+        </service>
+
     </services>
 </container>
