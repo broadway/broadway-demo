@@ -12,39 +12,45 @@
             "email": "wjzijderveld@gmail.com"
         },
         {
+            "name": "othillo",
+            "email": "othillo@othillo.nl"
+        },
+        {
             "name": "Qandidate.com",
             "homepage": "http://labs.qandidate.com"
         }
     ],
     "require": {
+        "php": ">=7.1",
         "ext-pdo_sqlite": "*",
-        "broadway/broadway": "^1.0",
-        "broadway/broadway-bundle": "^0.3",
-        "broadway/event-store-dbal": "^0.1",
-        "symfony/browser-kit": "~2.8",
-        "symfony/console": "~2.8",
-        "symfony/class-loader": "~2.8",
-        "symfony/framework-bundle": "~2.8",
-        "symfony/yaml": "~2.8",
-        "symfony/finder": "~2.8",
-        "qandidate/stack-request-id": "~0.3",
-        "symfony/process": "~2.6"
+        "symfony/symfony": "^4.0",
+        "symfony/flex": "^1.0",
+        "broadway/broadway-bundle": "^0.4",
+        "broadway/event-store-dbal": "^0.2",
+        "doctrine/doctrine-bundle": "^1.8",
+        "qandidate/stack-request-id": "^1.1"
     },
     "autoload": {
-        "psr-0": {
-            "BroadwayDemo": "src/",
-            "BroadwayDemoBundle": "src/"
+        "psr-4": {
+            "BroadwayDemo\\": "src/"
         }
     },
     "autoload-dev": {
-        "psr-0": {
-            "": "test/"
+        "psr-4": {
+            "BroadwayDemo\\": "test/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "require-dev": {
-        "instaclick/base-test-bundle": "~0.5",
         "phpunit/phpunit": "^5.5"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": "true"
+        }
+    },
+    "scripts": {
+        "auto-scripts": {
+
+        }
     }
 }
