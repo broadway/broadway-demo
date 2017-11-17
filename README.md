@@ -29,6 +29,12 @@ docker-compose up -d
 
 Docker-compose will set up the containers needed to run this demo.
 
+
+```sh
+docker-compose exec app /bin/bash
+app/console broadway:event-store:schema:init
+```
+
 The app will be available at http://localhost:8000 as configured in `docker-compose.yml`.
 
 ## Running the demo
@@ -42,6 +48,12 @@ This demo doesn't have a GUI, only an API with the following endpoints:
 | POST | `/basket/{basketId}/removeProduct` | Remove a product from a basket (productId as form field) |
 | POST | `/basket/{basketId}/checkout` | Checkout a basket |
 | GET | `/advice/{productId}` | Retrieve _Other people also bought this_ list |
+
+### Elasticsearch web ui
+
+You can access the elasticsearch; main index `broadway_demo.people_that_bought_this_product`
+
+http://localhost:9200/_plugin/head/
 
 ## Running the tests
 
