@@ -17,9 +17,9 @@ You will need to have [SQLite] installed to run the demo.
 
 ```
 composer install
-app/console broadway:event-store:schema:init
-app/console broadway:read-model:create
-app/console server:run
+bin/console broadway:event-store:schema:init
+bin/console broadway:read-model:create
+bin/console server:run
 ```
 
 This demo doesn't have a GUI, only an API with the following endpoints:
@@ -71,17 +71,17 @@ To run all the tests:
 
 ## Code structure
 
-- Domain code can be found in `src/BroadwayDemo/Basket`
-- ReadModel code can be found in `src/BroadwayDemo/ReadModel`
-- Controller / services can be found in `src/BroadwayDemoBundle`
+- Domain code can be found in `src/Basket`
+- ReadModel code can be found in `src/ReadModel`
+- Controllers can be found in `src/Controllers`
 
-Note that there are two files for the services: `services.xml` and `domain.xml`.
-`domain.xml` contains all the domain-specific services (CommandHandler,
-ReadModels, Repositories), while `services.xml` contains domain-unspecific
+Note that there are two files for the services: `services.yaml` and `domain.yaml`.
+`domain.yaml` contains all the domain-specific services (CommandHandler,
+ReadModels, Repositories), while `services.yaml` contains domain-unspecific
 services (controllers etc).
 
-The domain specific tests can be found in `test/BroadwayDemo/Basket` and `test/BroadwayDemo/ReadModel`
+The domain specific tests can be found in `test/Basket` and `test/ReadModel`
 
-Note that there is a functional test in `test/BroadwayDemoBundle/Functional`
+Note that there is a functional test in `test/Functional`
 
 For more information, read our blog post about this demo: http://labs.qandidate.com/blog/2014/12/30/a-broadway-demo-application/

@@ -1,0 +1,2 @@
+broadway:
+   read_model: my_read_model_repository_factory

@@ -1,0 +1,36 @@
+services:
+    broadway_demo.basket.command_handler:
+        class: BroadwayDemo\Basket\BasketCommandHandler
+        arguments:
+            - '@broadway_demo.basket.repository'
+        tags:
+            - { name: broadway.command_handler }
+
+    broadway_demo.basket.repository:
+        class: BroadwayDemo\Basket\BasketRepository
+        arguments:
+            - '@broadway.event_store'
+            - '@broadway.event_handling.event_bus'
+            -
+                - '@broadway.metadata_enriching_event_stream_decorator'
+
+    broadway_demo.read_model.repository.people_that_bought_this_product:
+        class: Broadway\ReadModel\ReadModel
+        factory: ['@broadway.read_model.repository_factory', create]
+        arguments:
+            - "broadway_demo.people_that_bought_this_product"
+            - "BroadwayDemo\\ReadModel\\PeopleThatBoughtThisProductAlsoBought"
+
+    broadway_demo.read_model.projector.people_that_bought_this_product:
+        class: BroadwayDemo\ReadModel\PeopleThatBoughtThisProductAlsoBoughtProjector
+        arguments:
+            - '@broadway_demo.read_model.repository.people_that_bought_this_product'
+        tags:
+            - { name: broadway.domain.event_listener }
+
+    my_read_model_repository_factory:
+        class: BroadwayDemo\ReadModel\DBALRepositoryFactory
+        arguments:
+            - '@doctrine.dbal.default_connection'
+            - '@broadway.serializer.readmodel'
+            - "read_model"

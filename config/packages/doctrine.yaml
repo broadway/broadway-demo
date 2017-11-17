@@ -1,0 +1,7 @@
+parameters:
+doctrine:
+    dbal:
+        connections:
+            default:
+                driver: 'pdo_sqlite'
+                path:   '%kernel.cache_dir%.events.sqlite'
