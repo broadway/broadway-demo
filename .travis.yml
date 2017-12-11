@@ -12,4 +12,4 @@ install:
   - composer install
 
 script:
-  - ./vendor/bin/phpunit --exclude-group=none
+  - ./vendor/bin/phpunit
