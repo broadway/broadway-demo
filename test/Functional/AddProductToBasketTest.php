@@ -13,6 +13,9 @@ namespace BroadwayDemo\Functional;
 
 use BroadwayDemo\WebTestCase;
 
+/**
+ * @group functional
+ */
 class AddProductToBasketTest extends WebTestCase
 {
     /**
