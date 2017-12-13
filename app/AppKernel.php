@@ -76,14 +76,8 @@ class AppKernel extends Kernel
         ]);
 
         $c->loadFromExtension('broadway', [
-            'event_store' => [
-                'dbal' => [
-                    'enabled' => true,
-                ]
-            ],
-            'read_model' => [
-                'repository' => 'elasticsearch',
-            ]
+            'event_store' => 'my_dbal_event_store',
+            'read_model'  => 'my_read_model_repository_factory',
         ]);
     }
 }

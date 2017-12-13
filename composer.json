@@ -18,7 +18,7 @@
     ],
     "require": {
         "broadway/broadway": "^1.0",
-        "broadway/broadway-bundle": "^0.2",
+        "broadway/broadway-bundle": "^0.3",
         "broadway/event-store-dbal": "^0.1",
         "broadway/read-model-elasticsearch": "^0.1",
         "symfony/browser-kit": "~2.8",
