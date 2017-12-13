@@ -46,7 +46,7 @@ class WebTestCase extends BaseWebTestCase
     private function setUpEventStore($container)
     {
         $connection = $container->get('doctrine.dbal.default_connection');
-        $eventStore = $container->get('broadway.event_store.dbal');
+        $eventStore = $container->get('broadway.event_store');
 
         $table = $eventStore->configureTable();
 
@@ -57,7 +57,7 @@ class WebTestCase extends BaseWebTestCase
 
     private function setUpReadModel($container)
     {
-        $elasticsearch = $container->get('broadway.elasticsearch.client');
+        $elasticsearch = $container->get('my_elasticsearch_client');
 
         $indices = $this->getReadModelIndices();
 
