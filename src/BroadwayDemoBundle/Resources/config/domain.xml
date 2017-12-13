@@ -4,6 +4,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <parameters>
+        <parameter key="elasticsearch" type="collection">
+        </parameter>
+    </parameters>
+
     <services>
 
         <service id="broadway_demo.basket.command_handler" class="BroadwayDemo\Basket\BasketCommandHandler">
@@ -28,6 +33,27 @@
             <tag name="broadway.domain.event_listener" />
             <argument type="service" id="broadway_demo.read_model.repository.people_that_bought_this_product" />
         </service>
+
+        <service id="my_dbal_event_store" class="Broadway\EventStore\Dbal\DBALEventStore">
+            <argument type="service" id="doctrine.dbal.default_connection" />
+            <argument type="service" id="broadway.serializer.payload" />
+            <argument type="service" id="broadway.serializer.metadata" />
+            <argument>events</argument>
+            <argument>false</argument>
+            <argument type="service" id="broadway.uuid.converter" />
+        </service>
+
+        <service id="my_read_model_repository_factory" class="Broadway\ReadModel\ElasticSearch\ElasticSearchRepositoryFactory">
+            <argument type="service" id="my_elasticsearch_client" />
+            <argument type="service" id="broadway.serializer.readmodel" />
+        </service>
+
+        <service id="my_elasticsearch_client" class="Elasticsearch\Client">
+            <factory service="broadway.elasticsearch.client_factory" method="create" />
+            <argument>%elasticsearch%</argument>
+        </service>
+
+        <service id="broadway.elasticsearch.client_factory" class="Broadway\ReadModel\ElasticSearch\ElasticSearchClientFactory" public="false" />
 
     </services>
 
