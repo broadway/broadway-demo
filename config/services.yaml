@@ -20,10 +20,32 @@ services:
 
     broadway_demo.command.create_read_model:
         class: BroadwayDemo\Command\CreateReadModelCommand
+        arguments:
+        - "@doctrine.dbal.default_connection"
+        - "@broadway_demo.read_model.repository.people_that_bought_this_product"
         tags:
         - { name: console.command }
 
     broadway_demo.command.drop_read_model:
         class: BroadwayDemo\Command\DropReadModelCommand
+        arguments:
+        - "@doctrine.dbal.default_connection"
+        - "@broadway_demo.read_model.repository.people_that_bought_this_product"
+        tags:
+        - { name: console.command }
+
+    broadway_demo.command.create_event_store:
+        class: BroadwayDemo\Command\CreateEventStoreCommand
+        arguments:
+        - "@doctrine.dbal.default_connection"
+        - "@broadway.event_store"
+        tags:
+        - { name: console.command }
+
+    broadway_demo.command.drop_event_store:
+        class: BroadwayDemo\Command\DropEventStoreCommand
+        arguments:
+        - "@doctrine.dbal.default_connection"
+        - "@broadway.event_store"
         tags:
         - { name: console.command }

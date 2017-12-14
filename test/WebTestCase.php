@@ -46,72 +46,24 @@ class WebTestCase extends BaseWebTestCase
 
     private function setUpEventStore($container)
     {
-        $connection = $container->get('doctrine.dbal.default_connection');
-        $eventStore = $container->get('broadway.event_store');
+        $schemaManager = $container->get('doctrine.dbal.default_connection')->getSchemaManager();
+        $schema        = $schemaManager->createSchema();
+        $eventStore    = $container->get('broadway.event_store');
 
-        $table = $eventStore->configureTable();
-
-        $schemaManager = $connection->getSchemaManager();
-
-        $schemaManager->dropAndCreateTable($table);
+        if ($table = $eventStore->configureSchema($schema)) {
+            $schemaManager->dropAndCreateTable($table);
+        }
     }
 
     private function setUpReadModel($container)
     {
-        $schemaManager = $container->get('doctrine.dbal.default_connection')->getSchemaManager();
-        $schema        = $schemaManager->createSchema();
+        $schemaManager       = $container->get('doctrine.dbal.default_connection')->getSchemaManager();
+        $schema              = $schemaManager->createSchema();
+        $readModelRepository = $container->get('broadway_demo.read_model.repository.people_that_bought_this_product');
 
-        $tableName = 'read_model';
-
-        if ($schema->hasTable($tableName)) {
-            $schema->dropTable($tableName);
-            $schemaManager->dropTable($tableName);
+        if ($table = $readModelRepository->configureSchema($schema)) {
+            $schemaManager->dropAndCreateTable($table);
         }
-
-        $table = $schema->createTable('read_model');
-        $table->addColumn('id', 'integer', ['autoincrement' => true]);
-        $table->addColumn('uuid', 'guid', ['length' => 36]);
-        $table->addColumn('data', 'text');
-        $table->setPrimaryKey(['id']);
-        $table->addUniqueIndex(['uuid']);
-
-        $schemaManager->createTable($table);
-    }
-
-    /**
-     * @return array
-     */
-    protected function getReadModelIndices()
-    {
-        return array(
-            'broadway_demo.people_that_bought_this_product',
-        );
-    }
-
-    /**
-     * @return \Symfony\Component\DependencyInjection\ContainerInterface
-     */
-    protected function getContainer()
-    {
-        return $this->client->getContainer();
-    }
-
-    /**
-     * @param string $uuid
-     *
-     * @return \Broadway\Domain\DomainEventStream
-     */
-    protected function getEvents($uuid)
-    {
-        return $this->getEventStore()->load($uuid);
-    }
-
-    /**
-     * @return \Broadway\EventStore\EventStore
-     */
-    protected function getEventStore()
-    {
-        return $this->getContainer()->get('broadway.event_store.dbal');
     }
 
     /**

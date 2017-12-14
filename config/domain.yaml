@@ -16,6 +16,7 @@ services:
 
     broadway_demo.read_model.repository.people_that_bought_this_product:
         class: Broadway\ReadModel\ReadModel
+        public: true
         factory: ['@broadway.read_model.repository_factory', create]
         arguments:
             - "broadway_demo.people_that_bought_this_product"

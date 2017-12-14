@@ -11,6 +11,8 @@
 
 namespace BroadwayDemo\Command;
 
+use BroadwayDemo\ReadModel\DBALRepository;
+use Doctrine\DBAL\Connection;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,6 +22,24 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class CreateReadModelCommand extends ContainerAwareCommand
 {
+    /**
+     * @var DBALRepository
+     */
+    private $repository;
+
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    public function __construct(Connection $connection, DBALRepository $repository)
+    {
+        parent::__construct();
+
+        $this->repository = $repository;
+        $this->connection = $connection;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -37,24 +57,13 @@ class CreateReadModelCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $schemaManager = $this->getContainer()
-            ->get('doctrine.dbal.default_connection')
-            ->getSchemaManager();
-        $schema = $schemaManager->createSchema();
-        $tableName = 'read_model';
+        $schemaManager = $this->connection->getSchemaManager();
 
-        if ($schema->hasTable($tableName)) {
-            $schema->dropTable($tableName);
-            $schemaManager->dropTable($tableName);
+        if ($table = $this->repository->configureSchema($schemaManager->createSchema())) {
+            $schemaManager->createTable($table);
+            $output->writeln('<info>Created Broadway read model schema</info>');
+        } else {
+            $output->writeln('<info>Broadway read model schema already exists</info>');
         }
-
-        $table = $schema->createTable('read_model');
-        $table->addColumn('id', 'integer', ['autoincrement' => true]);
-        $table->addColumn('uuid', 'guid', ['length' => 36]);
-        $table->addColumn('data', 'text');
-        $table->setPrimaryKey(['id']);
-        $table->addUniqueIndex(['uuid']);
-
-        $schemaManager->createTable($table);
     }
 }
