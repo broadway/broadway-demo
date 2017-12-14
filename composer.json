@@ -25,6 +25,8 @@
         "ext-pdo_sqlite": "*",
         "symfony/symfony": "^4.0",
         "symfony/flex": "^1.0",
+        "symfony/framework-bundle": "^4.0",
+        "symfony/monolog-bundle": "^3.1",
         "broadway/broadway-bundle": "^0.4",
         "broadway/event-store-dbal": "^0.2",
         "doctrine/doctrine-bundle": "^1.8",

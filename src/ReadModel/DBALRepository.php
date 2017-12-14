@@ -16,6 +16,8 @@ use Broadway\ReadModel\Identifiable;
 use Broadway\ReadModel\Repository;
 use Broadway\Serializer\Serializer;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\Table;
 
 class DBALRepository implements Repository
 {
@@ -23,24 +25,27 @@ class DBALRepository implements Repository
      * @var Connection
      */
     private $connection;
+
     /**
      * @var Serializer
      */
     private $serializer;
+
     /**
      * @var string
      */
     private $tableName;
+
     /**
-     * @var
+     * @var string
      */
     private $class;
 
     public function __construct(
         Connection $connection,
         Serializer $serializer,
-        $tableName,
-        $class
+        string $tableName,
+        string $class
     ) {
         $this->connection = $connection;
         $this->serializer = $serializer;
@@ -79,7 +84,13 @@ class DBALRepository implements Repository
      */
     public function findBy(array $fields): array
     {
-        // TODO: Implement findBy() method.
+        if (empty($fields)) {
+            return [];
+        }
+
+        return array_values(array_filter($this->findAll(), function (Identifiable $readModel) use ($fields) {
+            return $fields === array_intersect_assoc($this->serializer->serialize($readModel)['payload'], $fields);
+        }));
     }
 
     /**
@@ -87,7 +98,11 @@ class DBALRepository implements Repository
      */
     public function findAll(): array
     {
-        // TODO: Implement findAll() method.
+        $rows = $this->connection->fetchAll(sprintf('SELECT * FROM %s', $this->tableName));
+
+        return array_map(function(array $row) {
+            return $this->serializer->deserialize(json_decode($row['data'], true));
+        }, $rows);
     }
 
     /**
@@ -95,6 +110,27 @@ class DBALRepository implements Repository
      */
     public function remove($id)
     {
-        // TODO: Implement delete() method.
+        $this->connection->executeUpdate(sprintf('DELETE FROM %s WHERE uuid = ?', $this->tableName), [$id]);
+    }
+
+    /**
+     * @return \Doctrine\DBAL\Schema\Table|null
+     */
+    public function configureSchema(Schema $schema)
+    {
+        if ($schema->hasTable($this->tableName)) {
+            return null;
+        }
+        return $this->configureTable($schema);
+    }
+
+    public function configureTable(Schema $schema): Table
+    {
+        $table = $schema->createTable($this->tableName);
+        $table->addColumn('uuid', 'guid', ['length' => 36]);
+        $table->addColumn('data', 'text');
+        $table->setPrimaryKey(['uuid']);
+
+        return $table;
     }
 }
