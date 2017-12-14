@@ -17,7 +17,7 @@ You will need to have [SQLite] installed to run the demo.
 
 ```
 composer install
-bin/console broadway:event-store:schema:init
+bin/console broadway:event-store:create
 bin/console broadway:read-model:create
 bin/console server:run
 ```

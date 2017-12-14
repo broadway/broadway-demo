@@ -11,34 +11,34 @@
 
 namespace BroadwayDemo\Command;
 
-use BroadwayDemo\ReadModel\DBALRepository;
+use Broadway\EventStore\Dbal\DBALEventStore;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * drops the read model table.
+ * Drops the event store schema.
  */
-class DropReadModelCommand extends ContainerAwareCommand
+class DropEventStoreCommand extends ContainerAwareCommand
 {
     /**
      * @var Connection
      */
     private $connection;
-
     /**
-     * @var DBALRepository
+     * @var EventStore
      */
-    private $repository;
+    private $eventStore;
 
-    public function __construct(Connection $connection, DBALRepository $repository)
+    public function __construct(Connection $connection, DBALEventStore $eventStore)
     {
-        parent::__construct();
-
-        $this->repository = $repository;
         $this->connection = $connection;
+        $this->eventStore = $eventStore;
+
+        parent::__construct();
     }
 
     /**
@@ -46,11 +46,17 @@ class DropReadModelCommand extends ContainerAwareCommand
      */
     protected function configure()
     {
-        parent::configure();
-
         $this
-            ->setName('broadway:read-model:drop')
-            ->setDescription('Drops the read model table');
+            ->setName('broadway:event-store:drop')
+            ->setDescription('Drops the event store schema')
+            ->setHelp(
+<<<EOT
+The <info>%command.name%</info> command drops the schema in the default
+connections database:
+
+<info>php app/console %command.name%</info>
+EOT
+            );
     }
 
     /**
@@ -59,13 +65,13 @@ class DropReadModelCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $schemaManager = $this->connection->getSchemaManager();
-        $table         = $this->repository->configureTable(new Schema());
+        $table         = $this->eventStore->configureTable(new Schema());
 
-        if ($schemaManager->tablesExist($table->getName())) {
+        if ($schemaManager->tablesExist([$table->getName()])) {
             $schemaManager->dropTable($table->getName());
-            $output->writeln('<info>Dropped Broadway read model schema</info>');
+            $output->writeln('<info>Dropped Broadway event-store schema</info>');
         } else {
-            $output->writeln('<info>Broadway read model schema does not exist</info>');
+            $output->writeln('<info>Broadway event-store schema does not exist</info>');
         }
     }
 }
