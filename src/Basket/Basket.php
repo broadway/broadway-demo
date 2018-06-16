@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Basket;
 
 use Broadway\EventSourcing\EventSourcedAggregateRoot;
@@ -62,16 +64,16 @@ class Basket extends EventSourcedAggregateRoot
     {
         $productId = $event->getProductId();
 
-        if (! $this->productIsInBasket($productId)) {
+        if (!$this->productIsInBasket($productId)) {
             $this->productCountById[$productId] = 0;
         }
 
-        $this->productCountById[$productId]++;
+        ++$this->productCountById[$productId];
     }
 
     public function removeProduct($productId)
     {
-        if (! $this->productIsInBasket($productId)) {
+        if (!$this->productIsInBasket($productId)) {
             return;
         }
 
@@ -88,9 +90,9 @@ class Basket extends EventSourcedAggregateRoot
         $productId = $event->getProductId();
 
         if ($this->productIsInBasket($productId)) {
-            $this->productCountById[$productId]--;
+            --$this->productCountById[$productId];
 
-            if ($this->productCountById[$productId] === 0) {
+            if (0 === $this->productCountById[$productId]) {
                 unset($this->productCountById[$productId]);
             }
         }
@@ -103,7 +105,7 @@ class Basket extends EventSourcedAggregateRoot
 
     public function checkout()
     {
-        if (count($this->productCountById) === 0) {
+        if (0 === count($this->productCountById)) {
             throw new EmptyBasketException('Cannot checkout an empty basket');
         }
 

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the broadway/broadway package.
+ * This file is part of the broadway/broadway-demo package.
  *
  * (c) Qandidate.com <opensource@qandidate.com>
  *
@@ -9,12 +9,13 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Command;
 
 use Broadway\EventStore\Dbal\DBALEventStore;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
-use Exception;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -42,7 +43,7 @@ class DropEventStoreCommand extends ContainerAwareCommand
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function configure()
     {
@@ -60,12 +61,12 @@ EOT
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $schemaManager = $this->connection->getSchemaManager();
-        $table         = $this->eventStore->configureTable(new Schema());
+        $table = $this->eventStore->configureTable(new Schema());
 
         if ($schemaManager->tablesExist([$table->getName()])) {
             $schemaManager->dropTable($table->getName());

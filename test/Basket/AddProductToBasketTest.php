@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Basket;
 
 class AddProductToBasketTest extends BasketCommandHandlerTest
@@ -18,15 +20,15 @@ class AddProductToBasketTest extends BasketCommandHandlerTest
      */
     public function it_adds_a_product_to_a_basket()
     {
-        $basketId    = new BasketId('00000000-0000-0000-0000-000000000000');
-        $productId   = '1337';
+        $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
+        $productId = '1337';
         $productName = 'Awesome Product';
         $this->scenario
             ->withAggregateId($basketId)
             ->given(array(new BasketWasPickedUp($basketId)))
             ->when(new AddProductToBasket($basketId, $productId, $productName))
             ->then(array(
-                new ProductWasAddedToBasket($basketId, $productId, $productName)
+                new ProductWasAddedToBasket($basketId, $productId, $productName),
         ));
     }
 
@@ -35,18 +37,18 @@ class AddProductToBasketTest extends BasketCommandHandlerTest
      */
     public function multiple_products_can_be_added_to_a_basket()
     {
-        $basketId    = new BasketId('00000000-0000-0000-0000-000000000000');
-        $productId   = '1337';
+        $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
+        $productId = '1337';
         $productName = 'Awesome Product';
         $this->scenario
             ->withAggregateId($basketId)
             ->given(array(
                 new BasketWasPickedUp($basketId),
-                new ProductWasAddedToBasket($basketId, 'otherId', $productName)
+                new ProductWasAddedToBasket($basketId, 'otherId', $productName),
             ))
             ->when(new AddProductToBasket($basketId, $productId, $productName))
             ->then(array(
-                new ProductWasAddedToBasket($basketId, $productId, $productName)
+                new ProductWasAddedToBasket($basketId, $productId, $productName),
         ));
     }
 
@@ -55,18 +57,18 @@ class AddProductToBasketTest extends BasketCommandHandlerTest
      */
     public function a_product_can_be_added_to_a_basket_multiple_times()
     {
-        $basketId    = new BasketId('00000000-0000-0000-0000-000000000000');
-        $productId   = '1337';
+        $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
+        $productId = '1337';
         $productName = 'Awesome Product';
         $this->scenario
             ->withAggregateId($basketId)
             ->given(array(
                 new BasketWasPickedUp($basketId),
-                new ProductWasAddedToBasket($basketId, $productId, $productName)
+                new ProductWasAddedToBasket($basketId, $productId, $productName),
             ))
             ->when(new AddProductToBasket($basketId, $productId, $productName))
             ->then(array(
-                new ProductWasAddedToBasket($basketId, $productId, $productName)
+                new ProductWasAddedToBasket($basketId, $productId, $productName),
         ));
     }
 }

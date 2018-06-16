@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\ReadModel;
 
 use Broadway\ReadModel\SerializableReadModel;
@@ -17,7 +19,7 @@ use Broadway\ReadModel\Testing\SerializableReadModelTestCase;
 class PeopleThatBoughtThisProductAlsoBoughtTest extends SerializableReadModelTestCase
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function createSerializableReadModel(): SerializableReadModel
     {

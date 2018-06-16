@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\ReadModel;
 
 use Broadway\ReadModel\Repository;
@@ -33,8 +35,8 @@ class DBALRepositoryTest extends RepositoryTestCase
             RepositoryTestReadModel::class
         );
 
-        $schemaManager    = $connection->getSchemaManager();
-        $schema           = $schemaManager->createSchema();
+        $schemaManager = $connection->getSchemaManager();
+        $schema = $schemaManager->createSchema();
 
         if ($table = $repository->configureSchema($schema)) {
             $schemaManager->createTable($table);
