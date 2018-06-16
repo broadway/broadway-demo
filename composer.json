@@ -44,7 +44,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^5.5",
-        "broadway/coding-standard": "dev-initial-version"
+        "broadway/coding-standard": "~0.1"
     },
     "extra": {
         "symfony": {
@@ -55,11 +55,5 @@
         "auto-scripts": {
 
         }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/othillo/coding-standard"
-        }
-    ]
+    }
 }
