@@ -12,4 +12,6 @@ install:
   - composer install
 
 script:
-  - ./vendor/bin/phpunit
+  - vendor/bin/phpunit
+  - vendor/bin/php-cs-fixer fix --config=".php_cs" --dry-run --no-interaction --allow-risky=yes --diff --verbose
+  - vendor/bin/docheader check {src,test,public,config}

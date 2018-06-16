@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Basket;
 
 class AddProductToBasket extends BasketCommand
@@ -20,7 +22,7 @@ class AddProductToBasket extends BasketCommand
     {
         parent::__construct($basketId);
 
-        $this->productId   = $productId;
+        $this->productId = $productId;
         $this->productName = $productName;
     }
 

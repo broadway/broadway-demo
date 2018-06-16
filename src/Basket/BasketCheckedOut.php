@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Basket;
 
 class BasketCheckedOut extends BasketEvent
@@ -28,7 +30,7 @@ class BasketCheckedOut extends BasketEvent
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function serialize(): array
     {
@@ -38,7 +40,7 @@ class BasketCheckedOut extends BasketEvent
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function deserialize(array $data)
     {

@@ -8,6 +8,9 @@
     "broadway/broadway-bundle": {
         "version": "0.4.1"
     },
+    "broadway/coding-standard": {
+        "version": "dev-master"
+    },
     "broadway/event-store-dbal": {
         "version": "0.1",
         "recipe": {
@@ -19,6 +22,12 @@
     },
     "broadway/uuid-generator": {
         "version": "0.4.0"
+    },
+    "composer/semver": {
+        "version": "1.4.2"
+    },
+    "composer/xdebug-handler": {
+        "version": "1.1.0"
     },
     "doctrine/annotations": {
         "version": "1.0",
@@ -65,8 +74,20 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "friendsofphp/php-cs-fixer": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.2",
+            "ref": "81dee417d2cc60cd1c9d6208dff2ec22a1103e93"
+        }
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "malukenho/docheader": {
+        "version": "0.1.7"
     },
     "monolog/monolog": {
         "version": "1.23.0"
@@ -76,6 +97,9 @@
     },
     "paragonie/random_compat": {
         "version": "v2.0.11"
+    },
+    "php-cs-fixer/diff": {
+        "version": "v1.3.0"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -193,6 +217,9 @@
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.6.0"
+    },
+    "symfony/polyfill-php70": {
+        "version": "v1.8.0"
     },
     "symfony/polyfill-php72": {
         "version": "v1.6.0"

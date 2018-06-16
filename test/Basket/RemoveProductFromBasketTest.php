@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Basket;
 
 class RemoveProductFromBasketTest extends BasketCommandHandlerTest
@@ -18,17 +20,17 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
      */
     public function it_removes_a_product_that_was_added()
     {
-        $basketId    = new BasketId('00000000-0000-0000-0000-000000000000');
-        $productId   = '1337';
+        $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
+        $productId = '1337';
         $this->scenario
             ->withAggregateId($basketId)
             ->given(array(
                 new BasketWasPickedUp($basketId),
-                new ProductWasAddedToBasket($basketId, $productId, 'Awesome')
+                new ProductWasAddedToBasket($basketId, $productId, 'Awesome'),
             ))
             ->when(new RemoveProductFromBasket($basketId, $productId))
             ->then(array(
-                new ProductWasRemovedFromBasket($basketId, $productId)
+                new ProductWasRemovedFromBasket($basketId, $productId),
         ));
     }
 
@@ -37,8 +39,8 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
      */
     public function it_does_nothing_when_removing_a_product_that_is_not_in_a_basket()
     {
-        $basketId    = new BasketId('00000000-0000-0000-0000-000000000000');
-        $productId   = '1337';
+        $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
+        $productId = '1337';
         $this->scenario
             ->withAggregateId($basketId)
             ->given(array(
@@ -53,19 +55,19 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
      */
     public function it_only_removes_one_instance_of_a_product()
     {
-        $basketId    = new BasketId('00000000-0000-0000-0000-000000000000');
-        $productId   = '1337';
+        $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
+        $productId = '1337';
         $this->scenario
             ->withAggregateId($basketId)
             ->given(array(
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, $productId, 'Awesome'),
                 new ProductWasAddedToBasket($basketId, $productId, 'Awesome'),
-                new ProductWasRemovedFromBasket($basketId, $productId)
+                new ProductWasRemovedFromBasket($basketId, $productId),
             ))
             ->when(new RemoveProductFromBasket($basketId, $productId))
             ->then(array(
-                new ProductWasRemovedFromBasket($basketId, $productId)
+                new ProductWasRemovedFromBasket($basketId, $productId),
         ));
     }
 }

@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Controller;
 
 use Assert\Assertion as Assert;
@@ -32,14 +34,14 @@ class BasketController
         CommandBus $commandBus,
         UuidGeneratorInterface $uuidGenerator
     ) {
-        $this->commandBus    = $commandBus;
+        $this->commandBus = $commandBus;
         $this->uuidGenerator = $uuidGenerator;
     }
 
     public function pickUpBasketAction(): JsonResponse
     {
         $basketId = new BasketId($this->uuidGenerator->generate());
-        $command  = new PickUpBasket($basketId);
+        $command = new PickUpBasket($basketId);
 
         $this->commandBus->dispatch($command);
 
@@ -51,7 +53,7 @@ class BasketController
         $basketId = new BasketId($basketId);
 
         $productToAdd = $request->request->get('productId');
-        $productName  = $request->request->get('productName');
+        $productName = $request->request->get('productName');
 
         Assert::notNull($productName);
 
@@ -78,7 +80,7 @@ class BasketController
     public function checkoutAction(string $basketId): Response
     {
         $basketId = new BasketId($basketId);
-        $command  = new Checkout($basketId);
+        $command = new Checkout($basketId);
 
         $this->commandBus->dispatch($command);
 

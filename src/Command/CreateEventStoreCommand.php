@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the broadway/broadway package.
+ * This file is part of the broadway/broadway-demo package.
  *
  * (c) Qandidate.com <opensource@qandidate.com>
  *
@@ -9,11 +9,12 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Command;
 
 use Broadway\EventStore\Dbal\DBALEventStore;
 use Doctrine\DBAL\Connection;
-use Exception;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -42,7 +43,7 @@ class CreateEventStoreCommand extends ContainerAwareCommand
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function configure()
     {
@@ -60,7 +61,7 @@ EOT
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

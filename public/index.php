@@ -9,12 +9,14 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 use BroadwayDemo\AppKernel;
 use Qandidate\Stack\RequestId;
 use Qandidate\Stack\UuidRequestIdGenerator;
 use Symfony\Component\HttpFoundation\Request;
 
-$loader = require __DIR__ .'/../vendor/autoload.php';
+$loader = require __DIR__.'/../vendor/autoload.php';
 
 $kernel = new AppKernel('dev', true);
 

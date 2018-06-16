@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Basket;
 
 class CheckoutTest extends BasketCommandHandlerTest
@@ -25,17 +27,17 @@ class CheckoutTest extends BasketCommandHandlerTest
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
-                new ProductWasAddedToBasket($basketId, 'productId2', 'Awesome Product Name')
+                new ProductWasAddedToBasket($basketId, 'productId2', 'Awesome Product Name'),
             ))
             ->when(new Checkout($basketId))
             ->then(array(
-                new BasketCheckedOut($basketId, array('productId' => 2, 'productId2' => 1))
+                new BasketCheckedOut($basketId, array('productId' => 2, 'productId2' => 1)),
         ));
     }
 
     /**
      * @test
-     * @expectedException BroadwayDemo\Basket\EmptyBasketException
+     * @expectedException \BroadwayDemo\Basket\EmptyBasketException
      */
     public function it_cannot_checkout_an_empty_basket()
     {
@@ -50,7 +52,7 @@ class CheckoutTest extends BasketCommandHandlerTest
 
     /**
      * @test
-     * @expectedException BroadwayDemo\Basket\EmptyBasketException
+     * @expectedException \BroadwayDemo\Basket\EmptyBasketException
      */
     public function it_cannot_checkout_a_basket_that_has_been_emptied()
     {
@@ -60,7 +62,7 @@ class CheckoutTest extends BasketCommandHandlerTest
             ->given(array(
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
-                new ProductWasRemovedFromBasket($basketId, 'productId')
+                new ProductWasRemovedFromBasket($basketId, 'productId'),
             ))
             ->when(new Checkout($basketId));
     }
@@ -76,7 +78,7 @@ class CheckoutTest extends BasketCommandHandlerTest
             ->given(array(
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
-                new BasketCheckedOut($basketId, array('productId' => 1))
+                new BasketCheckedOut($basketId, array('productId' => 1)),
             ))
             ->when(new Checkout($basketId))
             ->then(array());

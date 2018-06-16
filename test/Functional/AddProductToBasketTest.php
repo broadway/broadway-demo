@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Functional;
 
 use BroadwayDemo\WebTestCase;
@@ -27,7 +29,7 @@ class AddProductToBasketTest extends WebTestCase
 
         $basketId = $result['id'];
 
-        $this->post('/basket/' . $basketId . '/addProduct', array('productId' => '4d4ceed3-0aed-46f4-a86f-ca78ba5ea5db', 'productName' => 'ThisProductRocks'));
+        $this->post('/basket/'.$basketId.'/addProduct', array('productId' => '4d4ceed3-0aed-46f4-a86f-ca78ba5ea5db', 'productName' => 'ThisProductRocks'));
     }
 
     /**
@@ -39,8 +41,8 @@ class AddProductToBasketTest extends WebTestCase
 
         $basketId = $result['id'];
 
-        $this->post('/basket/' . $basketId . '/addProduct', array('productId' => '4d4ceed3-0aed-46f4-a86f-ca78ba5ea5db', 'productName' => 'ThisProductRocks'));
-        $this->post('/basket/' . $basketId . '/removeProduct', array('productId' => '4d4ceed3-0aed-46f4-a86f-ca78ba5ea5db', 'productName' => 'ThisProductRocks'));
+        $this->post('/basket/'.$basketId.'/addProduct', array('productId' => '4d4ceed3-0aed-46f4-a86f-ca78ba5ea5db', 'productName' => 'ThisProductRocks'));
+        $this->post('/basket/'.$basketId.'/removeProduct', array('productId' => '4d4ceed3-0aed-46f4-a86f-ca78ba5ea5db', 'productName' => 'ThisProductRocks'));
     }
 
     /**
@@ -52,17 +54,17 @@ class AddProductToBasketTest extends WebTestCase
 
         $basketId = $result['id'];
 
-        $firstProductId  = '4d4ceed3-0aed-46f4-a86f-ca78ba5ea5db';
+        $firstProductId = '4d4ceed3-0aed-46f4-a86f-ca78ba5ea5db';
         $secondProductId = '8e7af740-edca-4f2e-bdb8-07eadb7bc0fb';
-        $thirdProductId  = 'aaabf740-edca-4f2e-bdb8-07eadb7bc0fb';
-        $this->post('/basket/' . $basketId . '/addProduct', array('productId' => $firstProductId, 'productName' => 'ThisProductRocks'));
-        $this->post('/basket/' . $basketId . '/addProduct', array('productId' => $secondProductId, 'productName' => 'ThisProductRocks'));
-        $this->post('/basket/' . $basketId . '/addProduct', array('productId' => $secondProductId, 'productName' => 'ThisProductRocks'));
-        $this->post('/basket/' . $basketId . '/addProduct', array('productId' => $thirdProductId, 'productName' => 'ThisProductRocks'));
+        $thirdProductId = 'aaabf740-edca-4f2e-bdb8-07eadb7bc0fb';
+        $this->post('/basket/'.$basketId.'/addProduct', array('productId' => $firstProductId, 'productName' => 'ThisProductRocks'));
+        $this->post('/basket/'.$basketId.'/addProduct', array('productId' => $secondProductId, 'productName' => 'ThisProductRocks'));
+        $this->post('/basket/'.$basketId.'/addProduct', array('productId' => $secondProductId, 'productName' => 'ThisProductRocks'));
+        $this->post('/basket/'.$basketId.'/addProduct', array('productId' => $thirdProductId, 'productName' => 'ThisProductRocks'));
 
-        $this->post('/basket/' . $basketId . '/checkout', array());
+        $this->post('/basket/'.$basketId.'/checkout', array());
 
-        $result = $this->get('/advice/' . $firstProductId);
+        $result = $this->get('/advice/'.$firstProductId);
         $this->assertEquals($firstProductId, $result['purchasedProductId']);
         $this->assertCount(2, $result['otherProducts']);
         $this->assertEquals(2, $result['otherProducts'][$secondProductId]);
