@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\ReadModel;
 
 use Broadway\ReadModel\Repository;
@@ -36,7 +38,6 @@ class DBALRepositoryFactory implements RepositoryFactory
         Serializer $serializer,
         $tableName
     ) {
-
         $this->connection = $connection;
         $this->serializer = $serializer;
         $this->tableName = $tableName;

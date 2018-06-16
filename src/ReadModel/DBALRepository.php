@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\ReadModel;
 
 use Assert\Assertion;
@@ -49,8 +51,8 @@ class DBALRepository implements Repository
     ) {
         $this->connection = $connection;
         $this->serializer = $serializer;
-        $this->tableName  = $tableName;
-        $this->class      = $class;
+        $this->tableName = $tableName;
+        $this->class = $class;
     }
 
     /**
@@ -100,7 +102,7 @@ class DBALRepository implements Repository
     {
         $rows = $this->connection->fetchAll(sprintf('SELECT * FROM %s', $this->tableName));
 
-        return array_map(function(array $row) {
+        return array_map(function (array $row) {
             return $this->serializer->deserialize(json_decode($row['data'], true));
         }, $rows);
     }
@@ -121,6 +123,7 @@ class DBALRepository implements Repository
         if ($schema->hasTable($this->tableName)) {
             return null;
         }
+
         return $this->configureTable($schema);
     }
 

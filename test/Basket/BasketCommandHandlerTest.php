@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Basket;
 
 use Broadway\CommandHandling\CommandHandler;
@@ -19,7 +21,7 @@ use Broadway\EventStore\EventStore;
 abstract class BasketCommandHandlerTest extends CommandHandlerScenarioTestCase
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function createCommandHandler(EventStore $eventStore, EventBus $eventBus): CommandHandler
     {

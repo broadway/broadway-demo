@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
@@ -20,7 +22,7 @@ class WebTestCase extends BaseWebTestCase
     protected $client;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected static function createKernel(array $options = array())
     {
@@ -31,7 +33,7 @@ class WebTestCase extends BaseWebTestCase
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setUp()
     {
@@ -47,8 +49,8 @@ class WebTestCase extends BaseWebTestCase
     private function setUpEventStore($container)
     {
         $schemaManager = $container->get('doctrine.dbal.default_connection')->getSchemaManager();
-        $schema        = $schemaManager->createSchema();
-        $eventStore    = $container->get('broadway.event_store');
+        $schema = $schemaManager->createSchema();
+        $eventStore = $container->get('broadway.event_store');
 
         if ($table = $eventStore->configureSchema($schema)) {
             $schemaManager->dropAndCreateTable($table);
@@ -57,8 +59,8 @@ class WebTestCase extends BaseWebTestCase
 
     private function setUpReadModel($container)
     {
-        $schemaManager       = $container->get('doctrine.dbal.default_connection')->getSchemaManager();
-        $schema              = $schemaManager->createSchema();
+        $schemaManager = $container->get('doctrine.dbal.default_connection')->getSchemaManager();
+        $schema = $schemaManager->createSchema();
         $readModelRepository = $container->get('broadway_demo.read_model.repository.people_that_bought_this_product');
 
         if ($table = $readModelRepository->configureSchema($schema)) {
@@ -68,7 +70,8 @@ class WebTestCase extends BaseWebTestCase
 
     /**
      * @param string $url
-     * @param array $body
+     * @param array  $body
+     *
      * @return mixed
      */
     protected function post($url, array $body)
@@ -80,7 +83,8 @@ class WebTestCase extends BaseWebTestCase
 
     /**
      * @param string $url
-     * @param array $body
+     * @param array  $body
+     *
      * @return mixed
      */
     protected function put($url, array $body)
@@ -103,6 +107,7 @@ class WebTestCase extends BaseWebTestCase
 
     /**
      * @param string $url
+     *
      * @return mixed
      */
     protected function get($url)

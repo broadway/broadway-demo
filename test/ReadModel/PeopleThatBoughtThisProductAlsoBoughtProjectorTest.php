@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\ReadModel;
 
 use BroadwayDemo\Basket\BasketCheckedOut;
@@ -20,7 +22,7 @@ use Broadway\ReadModel\Testing\ProjectorScenarioTestCase;
 class PeopleThatBoughtThisProductAlsoBoughtProjectorTest extends ProjectorScenarioTestCase
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function createProjector(InMemoryRepository $repository): Projector
     {
@@ -32,7 +34,7 @@ class PeopleThatBoughtThisProductAlsoBoughtProjectorTest extends ProjectorScenar
      */
     public function it_creates_a_read_model_on_checkout()
     {
-        $basketId   = new BasketId('00000000-0000-0000-0000-000000000000');
+        $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $productId1 = 'productId1';
         $productId2 = 'productId2';
         $productId3 = 'productId3';
@@ -51,13 +53,13 @@ class PeopleThatBoughtThisProductAlsoBoughtProjectorTest extends ProjectorScenar
      */
     public function it_adds_the_product_count_for_items_that_were_purchased_earlier()
     {
-        $basketId   = new BasketId('00000000-0000-0000-0000-000000000000');
+        $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $productId1 = 'productId1';
         $productId2 = 'productId2';
 
         $this->scenario
             ->given(array(
-                new BasketCheckedOut($basketId, array($productId1 => 1, $productId2 => 2))
+                new BasketCheckedOut($basketId, array($productId1 => 1, $productId2 => 2)),
             ))
             ->when(new BasketCheckedOut($basketId, array($productId1 => 1, $productId2 => 2)))
             ->then(array(

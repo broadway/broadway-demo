@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -24,7 +26,7 @@ class AppKernel extends Kernel
     const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function registerBundles()
     {
@@ -37,7 +39,7 @@ class AppKernel extends Kernel
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
@@ -45,7 +47,7 @@ class AppKernel extends Kernel
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
     {
@@ -61,7 +63,7 @@ class AppKernel extends Kernel
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getCacheDir()
     {
@@ -69,7 +71,7 @@ class AppKernel extends Kernel
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getLogDir()
     {

@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Basket;
 
 class ProductWasAddedToBasket extends BasketEvent
@@ -20,7 +22,7 @@ class ProductWasAddedToBasket extends BasketEvent
     {
         parent::__construct($basketId);
 
-        $this->productId   = $productId;
+        $this->productId = $productId;
         $this->productName = $productName;
     }
 
@@ -35,7 +37,7 @@ class ProductWasAddedToBasket extends BasketEvent
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function deserialize(array $data)
     {
@@ -47,12 +49,12 @@ class ProductWasAddedToBasket extends BasketEvent
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function serialize(): array
     {
         return array_merge(parent::serialize(), array(
-            'productId'   => $this->productId,
+            'productId' => $this->productId,
             'productName' => $this->productName,
         ));
     }

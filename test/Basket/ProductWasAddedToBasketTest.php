@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Basket;
 
 use Broadway\Serializer\Testing\SerializableEventTestCase;
@@ -20,8 +22,8 @@ class ProductWasAddedToBasketTest extends SerializableEventTestCase
      */
     public function getters_of_event_work()
     {
-        $basketId    = new BasketId('00000000-0000-0000-0000-000000000000');
-        $productId   = '1337';
+        $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
+        $productId = '1337';
         $productName = 'Best Product Ever';
 
         $event = new ProductWasAddedToBasket($basketId, $productId, $productName);
@@ -32,7 +34,7 @@ class ProductWasAddedToBasketTest extends SerializableEventTestCase
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function createEvent()
     {

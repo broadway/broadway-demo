@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace BroadwayDemo\Basket;
 
 class PickUpBasketTest extends BasketCommandHandlerTest
@@ -23,7 +25,7 @@ class PickUpBasketTest extends BasketCommandHandlerTest
             ->given(array())
             ->when(new PickUpBasket($basketId))
             ->then(array(
-                new BasketWasPickedUp($basketId)
+                new BasketWasPickedUp($basketId),
         ));
     }
 }
