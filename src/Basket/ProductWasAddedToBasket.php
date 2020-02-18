@@ -53,9 +53,9 @@ class ProductWasAddedToBasket extends BasketEvent
      */
     public function serialize(): array
     {
-        return array_merge(parent::serialize(), array(
+        return array_merge(parent::serialize(), [
             'productId' => $this->productId,
             'productName' => $this->productName,
-        ));
+        ]);
     }
 }

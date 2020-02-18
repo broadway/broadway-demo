@@ -22,10 +22,10 @@ class PickUpBasketTest extends BasketCommandHandlerTest
     {
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $this->scenario
-            ->given(array())
+            ->given([])
             ->when(new PickUpBasket($basketId))
-            ->then(array(
+            ->then([
                 new BasketWasPickedUp($basketId),
-        ));
+        ]);
     }
 }

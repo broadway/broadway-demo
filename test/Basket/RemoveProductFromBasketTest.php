@@ -24,14 +24,14 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
         $productId = '1337';
         $this->scenario
             ->withAggregateId((string) $basketId)
-            ->given(array(
+            ->given([
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, $productId, 'Awesome'),
-            ))
+            ])
             ->when(new RemoveProductFromBasket($basketId, $productId))
-            ->then(array(
+            ->then([
                 new ProductWasRemovedFromBasket($basketId, $productId),
-        ));
+        ]);
     }
 
     /**
@@ -43,11 +43,11 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
         $productId = '1337';
         $this->scenario
             ->withAggregateId((string) $basketId)
-            ->given(array(
+            ->given([
                 new BasketWasPickedUp($basketId),
-            ))
+            ])
             ->when(new RemoveProductFromBasket($basketId, $productId))
-            ->then(array());
+            ->then([]);
     }
 
     /**
@@ -59,15 +59,15 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
         $productId = '1337';
         $this->scenario
             ->withAggregateId((string) $basketId)
-            ->given(array(
+            ->given([
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, $productId, 'Awesome'),
                 new ProductWasAddedToBasket($basketId, $productId, 'Awesome'),
                 new ProductWasRemovedFromBasket($basketId, $productId),
-            ))
+            ])
             ->when(new RemoveProductFromBasket($basketId, $productId))
-            ->then(array(
+            ->then([
                 new ProductWasRemovedFromBasket($basketId, $productId),
-        ));
+        ]);
     }
 }

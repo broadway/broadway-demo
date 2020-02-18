@@ -24,7 +24,7 @@ class WebTestCase extends BaseWebTestCase
     /**
      * {@inheritdoc}
      */
-    protected static function createKernel(array $options = array())
+    protected static function createKernel(array $options = [])
     {
         return new AppKernel(
             isset($options['environment']) ? $options['environment'] : 'test',
@@ -70,7 +70,6 @@ class WebTestCase extends BaseWebTestCase
 
     /**
      * @param string $url
-     * @param array  $body
      *
      * @return mixed
      */
@@ -83,7 +82,6 @@ class WebTestCase extends BaseWebTestCase
 
     /**
      * @param string $url
-     * @param array  $body
      *
      * @return mixed
      */
@@ -124,7 +122,7 @@ class WebTestCase extends BaseWebTestCase
      *
      * @return Response
      */
-    protected function getDynamicResponse($url, $method = 'GET', array $body = array())
+    protected function getDynamicResponse($url, $method = 'GET', array $body = [])
     {
         $this->client->request(
             $method,

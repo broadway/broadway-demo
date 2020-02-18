@@ -34,6 +34,6 @@ abstract class BasketEvent implements Serializable
      */
     public function serialize(): array
     {
-        return array('basketId' => (string) $this->basketId);
+        return ['basketId' => (string) $this->basketId];
     }
 }
