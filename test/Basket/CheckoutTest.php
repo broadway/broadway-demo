@@ -22,7 +22,7 @@ class CheckoutTest extends BasketCommandHandlerTest
     {
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $this->scenario
-            ->withAggregateId($basketId)
+            ->withAggregateId((string) $basketId)
             ->given(array(
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
@@ -43,7 +43,7 @@ class CheckoutTest extends BasketCommandHandlerTest
         $this->expectException('BroadwayDemo\Basket\EmptyBasketException');
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $this->scenario
-            ->withAggregateId($basketId)
+            ->withAggregateId((string) $basketId)
             ->given(array(
                 new BasketWasPickedUp($basketId),
             ))
@@ -58,7 +58,7 @@ class CheckoutTest extends BasketCommandHandlerTest
         $this->expectException('BroadwayDemo\Basket\EmptyBasketException');
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $this->scenario
-            ->withAggregateId($basketId)
+            ->withAggregateId((string) $basketId)
             ->given(array(
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
@@ -74,7 +74,7 @@ class CheckoutTest extends BasketCommandHandlerTest
     {
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $this->scenario
-            ->withAggregateId($basketId)
+            ->withAggregateId((string) $basketId)
             ->given(array(
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),

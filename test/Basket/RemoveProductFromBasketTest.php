@@ -23,7 +23,7 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $productId = '1337';
         $this->scenario
-            ->withAggregateId($basketId)
+            ->withAggregateId((string) $basketId)
             ->given(array(
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, $productId, 'Awesome'),
@@ -42,7 +42,7 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $productId = '1337';
         $this->scenario
-            ->withAggregateId($basketId)
+            ->withAggregateId((string) $basketId)
             ->given(array(
                 new BasketWasPickedUp($basketId),
             ))
@@ -58,7 +58,7 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $productId = '1337';
         $this->scenario
-            ->withAggregateId($basketId)
+            ->withAggregateId((string) $basketId)
             ->given(array(
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, $productId, 'Awesome'),

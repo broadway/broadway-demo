@@ -76,7 +76,7 @@ class WebTestCase extends BaseWebTestCase
      */
     protected function post($url, array $body)
     {
-        $response = $this->getResponse($url, 'POST', $body);
+        $response = $this->getDynamicResponse($url, 'POST', $body);
 
         return json_decode($response->getContent(), true);
     }
@@ -89,7 +89,7 @@ class WebTestCase extends BaseWebTestCase
      */
     protected function put($url, array $body)
     {
-        $response = $this->getResponse($url, 'PUT', $body);
+        $response = $this->getDynamicResponse($url, 'PUT', $body);
 
         return json_decode($response->getContent(), true);
     }
@@ -112,7 +112,7 @@ class WebTestCase extends BaseWebTestCase
      */
     protected function get($url)
     {
-        $response = $this->getResponse($url);
+        $response = $this->getDynamicResponse($url);
 
         return json_decode($response->getContent(), true);
     }
@@ -124,7 +124,7 @@ class WebTestCase extends BaseWebTestCase
      *
      * @return Response
      */
-    protected static function getResponse($url, $method = 'GET', array $body = array())
+    protected function getDynamicResponse($url, $method = 'GET', array $body = array())
     {
         $this->client->request(
             $method,
