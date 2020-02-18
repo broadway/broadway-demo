@@ -35,7 +35,7 @@ class WebTestCase extends BaseWebTestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -124,7 +124,7 @@ class WebTestCase extends BaseWebTestCase
      *
      * @return Response
      */
-    protected function getResponse($url, $method = 'GET', array $body = array())
+    protected static function getResponse($url, $method = 'GET', array $body = array())
     {
         $this->client->request(
             $method,
