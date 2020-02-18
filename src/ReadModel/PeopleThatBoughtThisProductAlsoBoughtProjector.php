@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace BroadwayDemo\ReadModel;
 
-use BroadwayDemo\Basket\BasketCheckedOut;
 use Broadway\ReadModel\Projector;
 use Broadway\ReadModel\Repository;
+use BroadwayDemo\Basket\BasketCheckedOut;
 
 class PeopleThatBoughtThisProductAlsoBoughtProjector extends Projector
 {

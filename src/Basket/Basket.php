@@ -21,7 +21,7 @@ class Basket extends EventSourcedAggregateRoot
      * @var BasketId
      */
     private $basketId;
-    private $productCountById = array();
+    private $productCountById = [];
     private $hasBeenCheckedOut = false;
 
     /**

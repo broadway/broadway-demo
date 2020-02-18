@@ -45,8 +45,8 @@ class ProductWasRemovedFromBasket extends BasketEvent
      */
     public function serialize(): array
     {
-        return array_merge(parent::serialize(), array(
+        return array_merge(parent::serialize(), [
             'productId' => $this->productId,
-        ));
+        ]);
     }
 }

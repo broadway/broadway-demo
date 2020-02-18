@@ -18,7 +18,7 @@ use Broadway\ReadModel\SerializableReadModel;
 class PeopleThatBoughtThisProductAlsoBought implements SerializableReadModel
 {
     private $purchasedProductId;
-    private $otherProducts = array();
+    private $otherProducts = [];
 
     public function __construct(string $purchasedProductId)
     {
@@ -38,10 +38,10 @@ class PeopleThatBoughtThisProductAlsoBought implements SerializableReadModel
      */
     public function serialize(): array
     {
-        return array(
+        return [
             'purchasedProductId' => $this->purchasedProductId,
             'otherProducts' => $this->otherProducts,
-        );
+        ];
     }
 
     public function addProduct(string $productId, int $count)

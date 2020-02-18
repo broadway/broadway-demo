@@ -23,16 +23,16 @@ class CheckoutTest extends BasketCommandHandlerTest
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $this->scenario
             ->withAggregateId((string) $basketId)
-            ->given(array(
+            ->given([
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
                 new ProductWasAddedToBasket($basketId, 'productId2', 'Awesome Product Name'),
-            ))
+            ])
             ->when(new Checkout($basketId))
-            ->then(array(
-                new BasketCheckedOut($basketId, array('productId' => 2, 'productId2' => 1)),
-        ));
+            ->then([
+                new BasketCheckedOut($basketId, ['productId' => 2, 'productId2' => 1]),
+        ]);
     }
 
     /**
@@ -44,9 +44,9 @@ class CheckoutTest extends BasketCommandHandlerTest
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $this->scenario
             ->withAggregateId((string) $basketId)
-            ->given(array(
+            ->given([
                 new BasketWasPickedUp($basketId),
-            ))
+            ])
             ->when(new Checkout($basketId));
     }
 
@@ -59,11 +59,11 @@ class CheckoutTest extends BasketCommandHandlerTest
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $this->scenario
             ->withAggregateId((string) $basketId)
-            ->given(array(
+            ->given([
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
                 new ProductWasRemovedFromBasket($basketId, 'productId'),
-            ))
+            ])
             ->when(new Checkout($basketId));
     }
 
@@ -75,12 +75,12 @@ class CheckoutTest extends BasketCommandHandlerTest
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $this->scenario
             ->withAggregateId((string) $basketId)
-            ->given(array(
+            ->given([
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, 'productId', 'Awesome Product Name'),
-                new BasketCheckedOut($basketId, array('productId' => 1)),
-            ))
+                new BasketCheckedOut($basketId, ['productId' => 1]),
+            ])
             ->when(new Checkout($basketId))
-            ->then(array());
+            ->then([]);
     }
 }

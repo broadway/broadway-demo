@@ -34,9 +34,9 @@ class BasketCheckedOut extends BasketEvent
      */
     public function serialize(): array
     {
-        return array_merge(parent::serialize(), array(
+        return array_merge(parent::serialize(), [
             'products' => $this->products,
-        ));
+        ]);
     }
 
     /**

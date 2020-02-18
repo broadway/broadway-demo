@@ -45,7 +45,7 @@ class BasketController
 
         $this->commandBus->dispatch($command);
 
-        return new JsonResponse(array('id' => (string) $basketId));
+        return new JsonResponse(['id' => (string) $basketId]);
     }
 
     public function addProductToBasketAction(Request $request, string $basketId): Response

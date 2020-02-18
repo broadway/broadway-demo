@@ -23,7 +23,7 @@ class BasketRepository extends EventSourcingRepository
     public function __construct(
         EventStore $eventStore,
         EventBus $eventBus,
-        array $eventStreamDecorators = array()
+        array $eventStreamDecorators = []
     ) {
         parent::__construct(
             $eventStore,

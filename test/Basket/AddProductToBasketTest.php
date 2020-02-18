@@ -25,11 +25,11 @@ class AddProductToBasketTest extends BasketCommandHandlerTest
         $productName = 'Awesome Product';
         $this->scenario
             ->withAggregateId((string) $basketId)
-            ->given(array(new BasketWasPickedUp($basketId)))
+            ->given([new BasketWasPickedUp($basketId)])
             ->when(new AddProductToBasket($basketId, $productId, $productName))
-            ->then(array(
+            ->then([
                 new ProductWasAddedToBasket($basketId, $productId, $productName),
-        ));
+        ]);
     }
 
     /**
@@ -42,14 +42,14 @@ class AddProductToBasketTest extends BasketCommandHandlerTest
         $productName = 'Awesome Product';
         $this->scenario
             ->withAggregateId((string) $basketId)
-            ->given(array(
+            ->given([
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, 'otherId', $productName),
-            ))
+            ])
             ->when(new AddProductToBasket($basketId, $productId, $productName))
-            ->then(array(
+            ->then([
                 new ProductWasAddedToBasket($basketId, $productId, $productName),
-        ));
+        ]);
     }
 
     /**
@@ -62,13 +62,13 @@ class AddProductToBasketTest extends BasketCommandHandlerTest
         $productName = 'Awesome Product';
         $this->scenario
             ->withAggregateId((string) $basketId)
-            ->given(array(
+            ->given([
                 new BasketWasPickedUp($basketId),
                 new ProductWasAddedToBasket($basketId, $productId, $productName),
-            ))
+            ])
             ->when(new AddProductToBasket($basketId, $productId, $productName))
-            ->then(array(
+            ->then([
                 new ProductWasAddedToBasket($basketId, $productId, $productName),
-        ));
+        ]);
     }
 }
