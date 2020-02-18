@@ -58,7 +58,7 @@ class DBALRepository implements Repository
     /**
      * {@inheritdoc}
      */
-    public function save(Identifiable $readModel)
+    public function save(Identifiable $readModel): void
     {
         Assertion::isInstanceOf($readModel, $this->class);
 
@@ -71,7 +71,7 @@ class DBALRepository implements Repository
     /**
      * {@inheritdoc}
      */
-    public function find($id)
+    public function find($id): ?Identifiable
     {
         $row = $this->connection->fetchAssoc(sprintf('SELECT * FROM %s WHERE uuid = ?', $this->tableName), [$id]);
         if (false === $row) {
@@ -110,7 +110,7 @@ class DBALRepository implements Repository
     /**
      * {@inheritdoc}
      */
-    public function remove($id)
+    public function remove($id): void
     {
         $this->connection->executeUpdate(sprintf('DELETE FROM %s WHERE uuid = ?', $this->tableName), [$id]);
     }

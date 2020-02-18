@@ -37,10 +37,10 @@ class CheckoutTest extends BasketCommandHandlerTest
 
     /**
      * @test
-     * @expectedException \BroadwayDemo\Basket\EmptyBasketException
      */
     public function it_cannot_checkout_an_empty_basket()
     {
+        $this->expectException('BroadwayDemo\Basket\EmptyBasketException');
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $this->scenario
             ->withAggregateId($basketId)
@@ -52,10 +52,10 @@ class CheckoutTest extends BasketCommandHandlerTest
 
     /**
      * @test
-     * @expectedException \BroadwayDemo\Basket\EmptyBasketException
      */
     public function it_cannot_checkout_a_basket_that_has_been_emptied()
     {
+        $this->expectException('BroadwayDemo\Basket\EmptyBasketException');
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
         $this->scenario
             ->withAggregateId($basketId)

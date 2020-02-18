@@ -22,6 +22,7 @@ class AddProductToBasketTest extends WebTestCase
 {
     /**
      * @test
+     * @doesNotPerformAssertion
      */
     public function it_adds_a_product_to_the_basket()
     {
@@ -34,6 +35,7 @@ class AddProductToBasketTest extends WebTestCase
 
     /**
      * @test
+     * @doesNotPerformAssertion
      */
     public function it_removes_a_product_from_the_basket()
     {

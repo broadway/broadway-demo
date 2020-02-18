@@ -47,6 +47,7 @@ class DBALRepositoryTest extends RepositoryTestCase
 
     /**
      * @test
+     * @doesNotPerformAssertion
      */
     public function it_finds_by_one_element_in_array()
     {
