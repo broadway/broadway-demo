@@ -17,6 +17,9 @@ use Broadway\EventSourcing\EventSourcedAggregateRoot;
 
 class Basket extends EventSourcedAggregateRoot
 {
+    /**
+     * @var BasketId
+     */
     private $basketId;
     private $productCountById = array();
     private $hasBeenCheckedOut = false;
@@ -26,7 +29,7 @@ class Basket extends EventSourcedAggregateRoot
      */
     public function getAggregateRootId(): string
     {
-        return $this->basketId;
+        return (string) $this->basketId;
     }
 
     public static function pickUpBasket(BasketId $basketId)
