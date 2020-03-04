@@ -9,9 +9,9 @@ before_install:
   - echo "memory_limit=2G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 install:
-  - composer install
+  - make dependencies
 
 script:
-  - vendor/bin/phpunit
-  - vendor/bin/php-cs-fixer fix --config=".php_cs" --dry-run --no-interaction --allow-risky=yes --diff --verbose
-  - vendor/bin/docheader check {src,test,public,config}
+  - make test
+  - make qa
+  - make changelog
