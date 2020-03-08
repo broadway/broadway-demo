@@ -1,6 +1,6 @@
 {
     "name": "broadway/broadway-demo",
-    "description": "broadway",
+    "description": "Demo application that uses Broadway",
     "license": "MIT",
     "authors": [
         {
