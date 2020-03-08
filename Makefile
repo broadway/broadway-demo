@@ -9,11 +9,15 @@ test:
 	vendor/bin/phpunit --testdox --exclude-group=none --colors=always
 
 .PHONY: qa
-qa: php-cs-fixer
+qa: php-cs-fixer-ci
 
 .PHONY: php-cs-fixer
 php-cs-fixer:
 	vendor/bin/php-cs-fixer fix --no-interaction --allow-risky=yes --diff --verbose
+
+.PHONY: php-cs-fixer-ci
+php-cs-fixer-ci:
+	vendor/bin/php-cs-fixer fix --dry-run --no-interaction --allow-risky=yes --diff --verbose
 
 .PHONY: changelog
 changelog:
