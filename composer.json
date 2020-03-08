@@ -50,10 +50,5 @@
         "symfony": {
             "allow-contrib": "true"
         }
-    },
-    "scripts": {
-        "auto-scripts": {
-
-        }
     }
 }
