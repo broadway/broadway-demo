@@ -18,8 +18,10 @@ use Broadway\ReadModel\Identifiable;
 use Broadway\ReadModel\Repository;
 use Broadway\Serializer\Serializer;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Schema\Table;
+use Doctrine\DBAL\TransactionIsolationLevel;
 
 class DBALRepository implements Repository
 {
@@ -62,10 +64,33 @@ class DBALRepository implements Repository
     {
         Assertion::isInstanceOf($readModel, $this->class);
 
-        $this->connection->insert($this->tableName, [
-            'uuid' => $readModel->getId(),
-            'data' => json_encode($this->serializer->serialize($readModel)),
-        ]);
+        $this->connection->setTransactionIsolation(TransactionIsolationLevel::SERIALIZABLE);
+        $this->connection->beginTransaction();
+
+        try {
+            if ($this->find($readModel->getId())) {
+                $this->connection->update(
+                    $this->tableName,
+                    [
+                        'data' => json_encode($this->serializer->serialize($readModel)),
+                    ],
+                    [
+                        'uuid' => $readModel->getId(),
+                    ]
+                );
+            } else {
+                $this->connection->insert($this->tableName, [
+                    'uuid' => $readModel->getId(),
+                    'data' => json_encode($this->serializer->serialize($readModel)),
+                ]);
+            }
+
+            $this->connection->commit();
+        } catch (DBALException $e) {
+            $this->connection->rollBack();
+        } catch (\Exception $e) {
+            $this->connection->rollBack();
+        }
     }
 
     /**
