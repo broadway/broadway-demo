@@ -45,7 +45,7 @@ class PeopleThatBoughtThisProductAlsoBoughtProjector extends Projector
         $readModel = $this->repository->find($productId);
 
         if (null === $readModel) {
-            $readModel = new PeopleThatBoughtThisProductAlsoBought($productId);
+            $readModel = new PeopleThatBoughtThisProductAlsoBought((string) $productId);
         }
 
         return $readModel;
@@ -54,7 +54,7 @@ class PeopleThatBoughtThisProductAlsoBoughtProjector extends Projector
     private function addProducts(PeopleThatBoughtThisProductAlsoBought $readModel, array $products)
     {
         foreach ($products as $productId => $count) {
-            $readModel->addProduct($productId, $count);
+            $readModel->addProduct((string) $productId, $count);
         }
     }
 }
