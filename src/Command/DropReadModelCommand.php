@@ -69,5 +69,7 @@ class DropReadModelCommand extends ContainerAwareCommand
         } else {
             $output->writeln('<info>Broadway read model schema does not exist</info>');
         }
+
+        return 0;
     }
 }

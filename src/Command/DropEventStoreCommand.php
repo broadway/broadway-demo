@@ -29,8 +29,9 @@ class DropEventStoreCommand extends ContainerAwareCommand
      * @var Connection
      */
     private $connection;
+
     /**
-     * @var EventStore
+     * @var DBALEventStore
      */
     private $eventStore;
 
@@ -74,5 +75,7 @@ EOT
         } else {
             $output->writeln('<info>Broadway event-store schema does not exist</info>');
         }
+
+        return 0;
     }
 }

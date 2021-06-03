@@ -73,5 +73,7 @@ EOT
         } else {
             $output->writeln('<info>Broadway event store schema already exists</info>');
         }
+
+        return 0;
     }
 }
