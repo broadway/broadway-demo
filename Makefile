@@ -19,6 +19,10 @@ php-cs-fixer:
 php-cs-fixer-ci:
 	vendor/bin/php-cs-fixer fix --dry-run --no-interaction --allow-risky=yes --diff --verbose
 
+PHONY: phpstan
+phpstan:
+	vendor/bin/phpstan analyse --level=5 src/
+
 .PHONY: changelog
 changelog:
 	git log $$(git describe --abbrev=0 --tags)...HEAD --no-merges --pretty=format:"* [%h](http://github.com/${TRAVIS_REPO_SLUG}/commit/%H) %s (%cN)"

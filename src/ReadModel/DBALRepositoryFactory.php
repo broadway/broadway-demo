@@ -29,7 +29,7 @@ class DBALRepositoryFactory implements RepositoryFactory
      */
     private $serializer;
     /**
-     * @var
+     * @var string
      */
     private $tableName;
 

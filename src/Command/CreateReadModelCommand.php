@@ -67,5 +67,7 @@ class CreateReadModelCommand extends ContainerAwareCommand
         } else {
             $output->writeln('<info>Broadway read model schema already exists</info>');
         }
+
+        return 0;
     }
 }
