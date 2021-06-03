@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
 
 class WebTestCase extends BaseWebTestCase
 {
-    const ENVIRONMENT = 'functional';
+    public const ENVIRONMENT = 'functional';
 
     protected $client;
 
