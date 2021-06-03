@@ -23,7 +23,7 @@ class AppKernel extends Kernel
 {
     use MicroKernelTrait;
 
-    const CONFIG_EXTS = '.{php,xml,yaml,yml}';
+    public const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
     /**
      * {@inheritdoc}
