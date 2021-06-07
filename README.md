@@ -13,7 +13,7 @@ You will need to have [SQLite] installed to run the demo.
 [DBAL event store]: https://github.com/broadway/event-store-dbal
 [SQLite]: https://www.sqlite.org/
 
-[![Build Status](https://travis-ci.org/broadway/broadway-demo.svg?branch=master)](https://travis-ci.org/broadway/broadway-demo)
+![build status](https://github.com/broadway/broadway-demo/actions/workflows/ci.yml/badge.svg)
 
 ## Running the demo
 
