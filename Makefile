@@ -9,7 +9,7 @@ test:
 	vendor/bin/phpunit --testdox --exclude-group=none --colors=always
 
 .PHONY: qa
-qa: php-cs-fixer-ci
+qa: php-cs-fixer-ci phpstan
 
 .PHONY: php-cs-fixer
 php-cs-fixer:
