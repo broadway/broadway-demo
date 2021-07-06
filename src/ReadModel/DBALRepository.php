@@ -73,7 +73,7 @@ class DBALRepository implements Repository
      */
     public function find($id): ?Identifiable
     {
-        $row = $this->connection->fetchAssoc(sprintf('SELECT * FROM %s WHERE uuid = ?', $this->tableName), [$id]);
+        $row = $this->connection->fetchAssociative(sprintf('SELECT * FROM %s WHERE uuid = ?', $this->tableName), [$id]);
         if (false === $row) {
             return null;
         }
@@ -100,7 +100,7 @@ class DBALRepository implements Repository
      */
     public function findAll(): array
     {
-        $rows = $this->connection->fetchAll(sprintf('SELECT * FROM %s', $this->tableName));
+        $rows = $this->connection->fetchAllAssociative(sprintf('SELECT * FROM %s', $this->tableName));
 
         return array_map(function (array $row) {
             return $this->serializer->deserialize(json_decode($row['data'], true));
