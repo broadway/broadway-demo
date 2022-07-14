@@ -51,5 +51,10 @@
         "symfony": {
             "allow-contrib": "true"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true
+        }
     }
 }
