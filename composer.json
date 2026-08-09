@@ -29,7 +29,7 @@
         "ramsey/uuid": "^4.0",
         "symfony/console": "^7.4",
         "symfony/framework-bundle": "^7.4",
-        "symfony/monolog-bundle": "^3.10",
+        "symfony/monolog-bundle": "^4.0",
         "symfony/yaml": "^7.4"
     },
     "autoload": {
