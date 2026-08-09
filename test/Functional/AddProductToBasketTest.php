@@ -14,16 +14,16 @@ declare(strict_types=1);
 namespace BroadwayDemo\Functional;
 
 use BroadwayDemo\WebTestCase;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\Test;
 
-/**
- * @group functional
- */
+#[Group('functional')]
 class AddProductToBasketTest extends WebTestCase
 {
     /**
-     * @test
      * @doesNotPerformAssertion
      */
+    #[Test]
     public function it_adds_a_product_to_the_basket()
     {
         $result = $this->post('/basket', []);
@@ -34,9 +34,9 @@ class AddProductToBasketTest extends WebTestCase
     }
 
     /**
-     * @test
      * @doesNotPerformAssertion
      */
+    #[Test]
     public function it_removes_a_product_from_the_basket()
     {
         $result = $this->post('/basket', []);
@@ -47,9 +47,7 @@ class AddProductToBasketTest extends WebTestCase
         $this->post('/basket/'.$basketId.'/removeProduct', ['productId' => '4d4ceed3-0aed-46f4-a86f-ca78ba5ea5db', 'productName' => 'ThisProductRocks']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_exposes_and_advice_after_checking_out_a_basket()
     {
         $result = $this->post('/basket', []);

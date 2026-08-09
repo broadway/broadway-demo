@@ -12,11 +12,6 @@ services:
             - '@broadway_demo.read_model.repository.people_that_bought_this_product'
         public: true
 
-    broadway.stack.request_id.monolog_processor:
-        class: Qandidate\Stack\RequestId\MonologProcessor
-        tags:
-        - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 255 }
-        - { name: monolog.processor }
 
     broadway_demo.command.create_read_model:
         class: BroadwayDemo\Command\CreateReadModelCommand

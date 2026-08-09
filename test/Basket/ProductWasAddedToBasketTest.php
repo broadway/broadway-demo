@@ -14,12 +14,11 @@ declare(strict_types=1);
 namespace BroadwayDemo\Basket;
 
 use Broadway\Serializer\Testing\SerializableEventTestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class ProductWasAddedToBasketTest extends SerializableEventTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function getters_of_event_work()
     {
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
@@ -33,9 +32,6 @@ class ProductWasAddedToBasketTest extends SerializableEventTestCase
         $this->assertEquals($productName, $event->getProductName());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function createEvent()
     {
         return new ProductWasAddedToBasket(

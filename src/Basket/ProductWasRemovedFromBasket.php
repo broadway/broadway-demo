@@ -29,9 +29,6 @@ class ProductWasRemovedFromBasket extends BasketEvent
         return $this->productId;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function deserialize(array $data)
     {
         return new self(
@@ -40,9 +37,6 @@ class ProductWasRemovedFromBasket extends BasketEvent
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function serialize(): array
     {
         return array_merge(parent::serialize(), [

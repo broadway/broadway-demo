@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace BroadwayDemo;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 class WebTestCase extends BaseWebTestCase
 {
@@ -21,10 +22,7 @@ class WebTestCase extends BaseWebTestCase
 
     protected $client;
 
-    /**
-     * {@inheritdoc}
-     */
-    protected static function createKernel(array $options = [])
+    protected static function createKernel(array $options = []): KernelInterface
     {
         return new AppKernel(
             isset($options['environment']) ? $options['environment'] : 'test',
@@ -32,9 +30,6 @@ class WebTestCase extends BaseWebTestCase
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -48,30 +43,34 @@ class WebTestCase extends BaseWebTestCase
 
     private function setUpEventStore($container)
     {
-        $schemaManager = $container->get('doctrine.dbal.default_connection')->getSchemaManager();
-        $schema = $schemaManager->createSchema();
+        $schemaManager = $container->get('doctrine.dbal.default_connection')->createSchemaManager();
+        $schema = $schemaManager->introspectSchema();
         $eventStore = $container->get('broadway.event_store');
 
         if ($table = $eventStore->configureSchema($schema)) {
-            $schemaManager->dropAndCreateTable($table);
+            if ($schemaManager->tablesExist([$table->getName()])) {
+                $schemaManager->dropTable($table->getName());
+            }
+            $schemaManager->createTable($table);
         }
     }
 
     private function setUpReadModel($container)
     {
-        $schemaManager = $container->get('doctrine.dbal.default_connection')->getSchemaManager();
-        $schema = $schemaManager->createSchema();
+        $schemaManager = $container->get('doctrine.dbal.default_connection')->createSchemaManager();
+        $schema = $schemaManager->introspectSchema();
         $readModelRepository = $container->get('broadway_demo.read_model.repository.people_that_bought_this_product');
 
         if ($table = $readModelRepository->configureSchema($schema)) {
-            $schemaManager->dropAndCreateTable($table);
+            if ($schemaManager->tablesExist([$table->getName()])) {
+                $schemaManager->dropTable($table->getName());
+            }
+            $schemaManager->createTable($table);
         }
     }
 
     /**
      * @param string $url
-     *
-     * @return mixed
      */
     protected function post($url, array $body)
     {
@@ -82,8 +81,6 @@ class WebTestCase extends BaseWebTestCase
 
     /**
      * @param string $url
-     *
-     * @return mixed
      */
     protected function put($url, array $body)
     {
@@ -105,8 +102,6 @@ class WebTestCase extends BaseWebTestCase
 
     /**
      * @param string $url
-     *
-     * @return mixed
      */
     protected function get($url)
     {

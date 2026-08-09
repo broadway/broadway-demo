@@ -29,9 +29,6 @@ abstract class BasketEvent implements Serializable
         return $this->basketId;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function serialize(): array
     {
         return ['basketId' => (string) $this->basketId];

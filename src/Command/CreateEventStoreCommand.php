@@ -15,14 +15,14 @@ namespace BroadwayDemo\Command;
 
 use Broadway\EventStore\Dbal\DBALEventStore;
 use Doctrine\DBAL\Connection;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Creates the event store schema.
  */
-class CreateEventStoreCommand extends ContainerAwareCommand
+class CreateEventStoreCommand extends Command
 {
     /**
      * @var Connection
@@ -42,16 +42,13 @@ class CreateEventStoreCommand extends ContainerAwareCommand
         parent::__construct();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure()
     {
         $this
             ->setName('broadway:event-store:create')
             ->setDescription('Creates the event store schema')
             ->setHelp(
-<<<EOT
+                <<<EOT
 The <info>%command.name%</info> command creates the schema in the default
 connections database:
 
@@ -60,14 +57,11 @@ EOT
             );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $schemaManager = $this->connection->getSchemaManager();
+        $schemaManager = $this->connection->createSchemaManager();
 
-        if ($table = $this->eventStore->configureSchema($schemaManager->createSchema())) {
+        if ($table = $this->eventStore->configureSchema($schemaManager->introspectSchema())) {
             $schemaManager->createTable($table);
             $output->writeln('<info>Created Broadway event store schema</info>');
         } else {

@@ -15,14 +15,14 @@ namespace BroadwayDemo\Command;
 
 use BroadwayDemo\ReadModel\DBALRepository;
 use Doctrine\DBAL\Connection;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Creates the read model table.
  */
-class CreateReadModelCommand extends ContainerAwareCommand
+class CreateReadModelCommand extends Command
 {
     /**
      * @var DBALRepository
@@ -42,9 +42,6 @@ class CreateReadModelCommand extends ContainerAwareCommand
         $this->connection = $connection;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure()
     {
         parent::configure();
@@ -54,14 +51,11 @@ class CreateReadModelCommand extends ContainerAwareCommand
             ->setDescription('Creates the read model table');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $schemaManager = $this->connection->getSchemaManager();
+        $schemaManager = $this->connection->createSchemaManager();
 
-        if ($table = $this->repository->configureSchema($schemaManager->createSchema())) {
+        if ($table = $this->repository->configureSchema($schemaManager->introspectSchema())) {
             $schemaManager->createTable($table);
             $output->writeln('<info>Created Broadway read model schema</info>');
         } else {

@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace BroadwayDemo\Basket;
 
-class RemoveProductFromBasketTest extends BasketCommandHandlerTest
+use PHPUnit\Framework\Attributes\Test;
+
+class RemoveProductFromBasketTest extends BasketCommandHandlerTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_removes_a_product_that_was_added()
     {
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
@@ -31,12 +31,10 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
             ->when(new RemoveProductFromBasket($basketId, $productId))
             ->then([
                 new ProductWasRemovedFromBasket($basketId, $productId),
-        ]);
+            ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_does_nothing_when_removing_a_product_that_is_not_in_a_basket()
     {
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
@@ -50,9 +48,7 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
             ->then([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_only_removes_one_instance_of_a_product()
     {
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
@@ -68,6 +64,6 @@ class RemoveProductFromBasketTest extends BasketCommandHandlerTest
             ->when(new RemoveProductFromBasket($basketId, $productId))
             ->then([
                 new ProductWasRemovedFromBasket($basketId, $productId),
-        ]);
+            ]);
     }
 }

@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace BroadwayDemo\Basket;
 
-use RuntimeException;
-
-class EmptyBasketException extends RuntimeException
+class EmptyBasketException extends \RuntimeException
 {
 }

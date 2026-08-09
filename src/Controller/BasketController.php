@@ -32,7 +32,7 @@ class BasketController
 
     public function __construct(
         CommandBus $commandBus,
-        UuidGeneratorInterface $uuidGenerator
+        UuidGeneratorInterface $uuidGenerator,
     ) {
         $this->commandBus = $commandBus;
         $this->uuidGenerator = $uuidGenerator;

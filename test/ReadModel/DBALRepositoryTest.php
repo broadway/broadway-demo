@@ -18,12 +18,10 @@ use Broadway\ReadModel\Testing\RepositoryTestCase;
 use Broadway\ReadModel\Testing\RepositoryTestReadModel;
 use Broadway\Serializer\SimpleInterfaceSerializer;
 use Doctrine\DBAL\DriverManager;
+use PHPUnit\Framework\Attributes\Test;
 
 class DBALRepositoryTest extends RepositoryTestCase
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function createRepository(): Repository
     {
         $connection = DriverManager::getConnection(['driver' => 'pdo_sqlite', 'memory' => true]);
@@ -35,8 +33,8 @@ class DBALRepositoryTest extends RepositoryTestCase
             RepositoryTestReadModel::class
         );
 
-        $schemaManager = $connection->getSchemaManager();
-        $schema = $schemaManager->createSchema();
+        $schemaManager = $connection->createSchemaManager();
+        $schema = $schemaManager->introspectSchema();
 
         if ($table = $repository->configureSchema($schema)) {
             $schemaManager->createTable($table);
@@ -46,9 +44,9 @@ class DBALRepositoryTest extends RepositoryTestCase
     }
 
     /**
-     * @test
      * @doesNotPerformAssertion
      */
+    #[Test]
     public function it_finds_by_one_element_in_array()
     {
         $this->markTestSkipped('not implemented');
