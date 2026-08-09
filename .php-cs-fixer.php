@@ -1,15 +1,17 @@
 <?php
 
-$config = require 'vendor/broadway/coding-standard/.php-cs-fixer.dist.php';
+declare(strict_types=1);
 
-$config->setFinder(
-    \PhpCsFixer\Finder::create()
-        ->in([
-            __DIR__ . '/src',
-            __DIR__ . '/test',
-            __DIR__ . '/bin',
-            __DIR__ . '/public',
-        ])
-);
+$finder = PhpCsFixer\Finder::create()
+    ->in([
+        __DIR__.'/src',
+        __DIR__.'/test',
+    ]);
 
-return $config;
+return (new PhpCsFixer\Config())
+    ->setRules([
+        '@Symfony' => true,
+        'declare_strict_types' => true,
+        'php_unit_method_casing' => ['case' => 'snake_case'],
+    ])
+    ->setFinder($finder);

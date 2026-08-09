@@ -29,9 +29,6 @@ class BasketCheckedOut extends BasketEvent
         return $this->products;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function serialize(): array
     {
         return array_merge(parent::serialize(), [
@@ -39,9 +36,6 @@ class BasketCheckedOut extends BasketEvent
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function deserialize(array $data)
     {
         return new self(

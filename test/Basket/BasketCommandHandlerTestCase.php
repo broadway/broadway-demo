@@ -18,11 +18,8 @@ use Broadway\CommandHandling\Testing\CommandHandlerScenarioTestCase;
 use Broadway\EventHandling\EventBus;
 use Broadway\EventStore\EventStore;
 
-abstract class BasketCommandHandlerTest extends CommandHandlerScenarioTestCase
+abstract class BasketCommandHandlerTestCase extends CommandHandlerScenarioTestCase
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function createCommandHandler(EventStore $eventStore, EventBus $eventBus): CommandHandler
     {
         return new BasketCommandHandler(

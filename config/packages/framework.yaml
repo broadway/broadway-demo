@@ -1,3 +1,8 @@
 framework:
     secret: 'Everything is awesome, everything is cool when your part of a team'
     test:   true
+    router:
+        utf8: true
+        default_uri: 'http://localhost'
+    php_errors:
+        log: true

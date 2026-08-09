@@ -15,9 +15,6 @@ namespace BroadwayDemo\Basket;
 
 class BasketWasPickedUp extends BasketEvent
 {
-    /**
-     * {@inheritdoc}
-     */
     public static function deserialize(array $data)
     {
         return new self(new BasketId($data['basketId']));

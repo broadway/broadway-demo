@@ -14,10 +14,9 @@ declare(strict_types=1);
 namespace BroadwayDemo;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
-use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\Routing\RouteCollectionBuilder;
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 class AppKernel extends Kernel
 {
@@ -25,10 +24,7 @@ class AppKernel extends Kernel
 
     public const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function registerBundles()
+    public function registerBundles(): iterable
     {
         $contents = require $this->getProjectDir().'/config/bundles.php';
         foreach ($contents as $class => $envs) {
@@ -38,43 +34,29 @@ class AppKernel extends Kernel
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function configureRoutes(RouteCollectionBuilder $routes)
-    {
-        $routes->import($this->getProjectDir().'/config/routes.yaml');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
-    {
-        $container->setParameter('container.autowiring.strict_mode', true);
-        $container->setParameter('container.dumper.inline_class_loader', true);
-        $confDir = $this->getProjectDir().'/config';
-        $loader->load($confDir.'/packages/*'.self::CONFIG_EXTS, 'glob');
-        if (is_dir($confDir.'/packages/'.$this->environment)) {
-            $loader->load($confDir.'/packages/'.$this->environment.'/**/*'.self::CONFIG_EXTS, 'glob');
-        }
-        $loader->load($confDir.'/services.yaml');
-        $loader->load($confDir.'/domain.yaml');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return $this->getProjectDir().'/var/cache/'.$this->environment;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getLogDir()
+    public function getLogDir(): string
     {
         return $this->getProjectDir().'/var/log';
+    }
+
+    protected function configureRoutes(RoutingConfigurator $routes): void
+    {
+        $routes->import($this->getProjectDir().'/config/routes.yaml');
+    }
+
+    protected function configureContainer(ContainerConfigurator $container): void
+    {
+        $confDir = $this->getProjectDir().'/config';
+        $container->import($confDir.'/packages/*'.self::CONFIG_EXTS);
+        if (is_dir($confDir.'/packages/'.$this->environment)) {
+            $container->import($confDir.'/packages/'.$this->environment.'/**/*'.self::CONFIG_EXTS);
+        }
+        $container->import($confDir.'/services.yaml');
+        $container->import($confDir.'/domain.yaml');
     }
 }

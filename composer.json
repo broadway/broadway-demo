@@ -21,16 +21,16 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "broadway/broadway-bundle": "^0.8",
+        "broadway/event-store-dbal": "^0.7",
+        "doctrine/doctrine-bundle": "^2.13",
         "ext-pdo_sqlite": "*",
-        "symfony/symfony": "^4.4",
-        "symfony/flex": "^1.0",
-        "symfony/framework-bundle": "^4.4",
-        "symfony/monolog-bundle": "^3.1,<3.7",
-        "broadway/broadway-bundle": "~0.5",
-        "broadway/event-store-dbal": "^0.6",
-        "doctrine/doctrine-bundle": "^2.0",
-        "qandidate/stack-request-id": "^3.0"
+        "php": "^8.2",
+        "ramsey/uuid": "^4.0",
+        "symfony/console": "^7.4",
+        "symfony/framework-bundle": "^7.4",
+        "symfony/monolog-bundle": "^3.10",
+        "symfony/yaml": "^7.4"
     },
     "autoload": {
         "psr-4": {
@@ -43,18 +43,15 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "broadway/coding-standard": "^1.2",
-        "phpstan/phpstan": "@stable"
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^11.5",
+        "symfony/browser-kit": "^7.4",
+        "symfony/css-selector": "^7.4"
     },
     "extra": {
         "symfony": {
             "allow-contrib": "true"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "symfony/flex": true
         }
     }
 }

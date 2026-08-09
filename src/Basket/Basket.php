@@ -24,9 +24,6 @@ class Basket extends EventSourcedAggregateRoot
     private $productCountById = [];
     private $hasBeenCheckedOut = false;
 
-    /**
-     * {@inheritdoc}
-     */
     public function getAggregateRootId(): string
     {
         return (string) $this->basketId;

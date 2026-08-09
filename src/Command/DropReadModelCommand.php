@@ -16,14 +16,14 @@ namespace BroadwayDemo\Command;
 use BroadwayDemo\ReadModel\DBALRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Schema;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * drops the read model table.
  */
-class DropReadModelCommand extends ContainerAwareCommand
+class DropReadModelCommand extends Command
 {
     /**
      * @var Connection
@@ -43,9 +43,6 @@ class DropReadModelCommand extends ContainerAwareCommand
         $this->connection = $connection;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configure()
     {
         parent::configure();
@@ -55,15 +52,12 @@ class DropReadModelCommand extends ContainerAwareCommand
             ->setDescription('Drops the read model table');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $schemaManager = $this->connection->getSchemaManager();
+        $schemaManager = $this->connection->createSchemaManager();
         $table = $this->repository->configureTable(new Schema());
 
-        if ($schemaManager->tablesExist($table->getName())) {
+        if ($schemaManager->tablesExist([$table->getName()])) {
             $schemaManager->dropTable($table->getName());
             $output->writeln('<info>Dropped Broadway read model schema</info>');
         } else {

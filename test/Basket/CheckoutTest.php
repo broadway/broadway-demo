@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace BroadwayDemo\Basket;
 
-class CheckoutTest extends BasketCommandHandlerTest
+use PHPUnit\Framework\Attributes\Test;
+
+class CheckoutTest extends BasketCommandHandlerTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_checks_out_a_basket()
     {
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');
@@ -32,12 +32,10 @@ class CheckoutTest extends BasketCommandHandlerTest
             ->when(new Checkout($basketId))
             ->then([
                 new BasketCheckedOut($basketId, ['productId' => 2, 'productId2' => 1]),
-        ]);
+            ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_checkout_an_empty_basket()
     {
         $this->expectException('BroadwayDemo\Basket\EmptyBasketException');
@@ -50,9 +48,7 @@ class CheckoutTest extends BasketCommandHandlerTest
             ->when(new Checkout($basketId));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_cannot_checkout_a_basket_that_has_been_emptied()
     {
         $this->expectException('BroadwayDemo\Basket\EmptyBasketException');
@@ -67,9 +63,7 @@ class CheckoutTest extends BasketCommandHandlerTest
             ->when(new Checkout($basketId));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function nothing_happens_when_checking_out_a_basket_for_a_second_time()
     {
         $basketId = new BasketId('00000000-0000-0000-0000-000000000000');

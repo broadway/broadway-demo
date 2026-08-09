@@ -47,7 +47,7 @@ class DBALRepository implements Repository
         Connection $connection,
         Serializer $serializer,
         string $tableName,
-        string $class
+        string $class,
     ) {
         $this->connection = $connection;
         $this->serializer = $serializer;
@@ -55,9 +55,6 @@ class DBALRepository implements Repository
         $this->class = $class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function save(Identifiable $readModel): void
     {
         Assertion::isInstanceOf($readModel, $this->class);
@@ -68,9 +65,6 @@ class DBALRepository implements Repository
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function find($id): ?Identifiable
     {
         $row = $this->connection->fetchAssociative(sprintf('SELECT * FROM %s WHERE uuid = ?', $this->tableName), [$id]);
@@ -81,9 +75,6 @@ class DBALRepository implements Repository
         return $this->serializer->deserialize(json_decode($row['data'], true));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function findBy(array $fields): array
     {
         if (empty($fields)) {
@@ -95,9 +86,6 @@ class DBALRepository implements Repository
         }));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function findAll(): array
     {
         $rows = $this->connection->fetchAllAssociative(sprintf('SELECT * FROM %s', $this->tableName));
@@ -107,16 +95,13 @@ class DBALRepository implements Repository
         }, $rows);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function remove($id): void
     {
-        $this->connection->executeUpdate(sprintf('DELETE FROM %s WHERE uuid = ?', $this->tableName), [$id]);
+        $this->connection->executeStatement(sprintf('DELETE FROM %s WHERE uuid = ?', $this->tableName), [$id]);
     }
 
     /**
-     * @return \Doctrine\DBAL\Schema\Table|null
+     * @return Table|null
      */
     public function configureSchema(Schema $schema)
     {

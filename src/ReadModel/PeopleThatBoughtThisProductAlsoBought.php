@@ -25,17 +25,11 @@ class PeopleThatBoughtThisProductAlsoBought implements SerializableReadModel
         $this->purchasedProductId = $purchasedProductId;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getId(): string
     {
         return $this->purchasedProductId;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function serialize(): array
     {
         return [
@@ -53,9 +47,6 @@ class PeopleThatBoughtThisProductAlsoBought implements SerializableReadModel
         $this->otherProducts[$productId] += $count;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function deserialize(array $data)
     {
         $readModel = new self($data['purchasedProductId']);
