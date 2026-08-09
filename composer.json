@@ -53,5 +53,6 @@
         "symfony": {
             "allow-contrib": "true"
         }
-    }
+    },
+    "abandoned": true
 }
